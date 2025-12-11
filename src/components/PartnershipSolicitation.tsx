@@ -7,7 +7,7 @@ export const PartnershipSolicitation: React.FC = () => {
             <div className="container mx-auto px-4 text-center">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Partner with Us</h2>
                 <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-10">
-                    We partner with organizations supporting open source technology that produces measurable societal benefit.
+                    We partner with organizations supporting Open Source technology that produces measurable societal benefit.
                     Join us in building a more open and accessible digital future.
                 </p>
 

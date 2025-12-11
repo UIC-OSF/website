@@ -1,11 +1,16 @@
 import React from 'react';
 import { Menu, X, Search } from 'lucide-react';
+import uicLogo from '../assets/uic-logo.svg';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     return (
         <div className="min-h-screen flex flex-col font-sans text-gray-900">
+            <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[60] bg-uic-blue text-white p-4 rounded shadow-lg font-bold">
+                Skip to main content
+            </a>
+
             {/* Header */}
             <header className="bg-white border-b border-gray-200">
                 {/* Top Bar (Red) */}
@@ -16,7 +21,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         <div className="flex items-center space-x-4">
                             <a href="https://uic.edu" className="flex-shrink-0">
                                 <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/d/d3/UIC_Wordmark.svg"
+                                    src={uicLogo}
                                     alt="UIC Logo"
                                     className="h-12"
                                 />
@@ -30,10 +35,9 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         </div>
 
                         {/* Desktop Nav */}
-                        <nav className="hidden md:flex items-center space-x-6">
+                        <nav className="hidden md:flex items-center space-x-6" aria-label="Desktop navigation">
                             <a href="#" className="text-sm font-medium text-gray-700 hover:text-uic-red">Services</a>
                             <a href="#" className="text-sm font-medium text-gray-700 hover:text-uic-red">Support</a>
-                            <a href="#" className="text-sm font-medium text-gray-700 hover:text-uic-red">Security</a>
                             <a href="#" className="text-sm font-medium text-gray-700 hover:text-uic-red">About</a>
                             <button className="text-gray-600 hover:text-uic-red">
                                 <Search className="w-5 h-5" />
@@ -44,6 +48,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         <button
                             className="md:hidden text-gray-600"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            aria-label="Toggle menu"
+                            aria-expanded={isMenuOpen}
                         >
                             {isMenuOpen ? <X /> : <Menu />}
                         </button>
@@ -52,19 +58,19 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
                 {/* Mobile Nav */}
                 {isMenuOpen && (
-                    <div className="md:hidden bg-gray-50 border-t border-gray-200">
+                    <nav className="md:hidden bg-gray-50 border-t border-gray-200" aria-label="Mobile navigation">
                         <div className="px-4 py-2 space-y-2">
                             <a href="#" className="block py-2 text-gray-700 hover:text-uic-red">Services</a>
                             <a href="#" className="block py-2 text-gray-700 hover:text-uic-red">Support</a>
                             <a href="#" className="block py-2 text-gray-700 hover:text-uic-red">Security</a>
                             <a href="#" className="block py-2 text-gray-700 hover:text-uic-red">About</a>
                         </div>
-                    </div>
+                    </nav>
                 )}
             </header>
 
             {/* Main Content */}
-            <main className="flex-grow">
+            <main id="main-content" className="flex-grow">
                 {children}
             </main>
 
@@ -74,7 +80,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
                         <div>
                             <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/d/d3/UIC_Wordmark.svg"
+                                src={uicLogo}
                                 alt="UIC Logo"
                                 className="h-8 mb-4 opacity-80"
                             />
@@ -104,7 +110,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         </div>
                         <div>
                             <h3 className="font-bold text-uic-blue mb-4">Connect</h3>
-                            <div className="flex space-x-4">
+                            <div className="flex space-x-4" aria-hidden="true">
                                 {/* Social icons placeholders */}
                                 <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
                                 <div className="w-8 h-8 bg-gray-300 rounded-full"></div>

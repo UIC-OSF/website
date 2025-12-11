@@ -25,11 +25,24 @@ const REPOS: RepoConfig[] = [
     { id: 'equalify', owner: 'EqualifyEverything', name: 'equalify', displayName: 'Equalify' },
 ];
 
-export const Bounties: React.FC = () => {
+interface BountiesProps {
+    selectedProject?: string;
+    onSelectProject?: (projectId: string) => void;
+}
+
+export const Bounties: React.FC<BountiesProps> = ({ selectedProject = 'all', onSelectProject }) => {
     const [bounties, setBounties] = useState<(Bounty & { projectId: string })[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [selectedProject, setSelectedProject] = useState<string>('all');
+    // Use prop for selectedProject, local state removed
+    // const [selectedProject, setSelectedProject] = useState<string>('all');  
+
+    // Helper to handle selection change
+    const handleSelectProject = (projectId: string) => {
+        if (onSelectProject) {
+            onSelectProject(projectId);
+        }
+    };
 
     useEffect(() => {
         const fetchBounties = async () => {
@@ -91,7 +104,8 @@ export const Bounties: React.FC = () => {
                 <div className="flex justify-center mb-8">
                     <div className="inline-flex bg-gray-100 p-1 rounded-lg">
                         <button
-                            onClick={() => setSelectedProject('all')}
+                            onClick={() => handleSelectProject('all')}
+                            aria-pressed={selectedProject === 'all'}
                             className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${selectedProject === 'all'
                                 ? 'bg-white text-uic-blue shadow-sm'
                                 : 'text-gray-600 hover:text-gray-900'
@@ -102,7 +116,8 @@ export const Bounties: React.FC = () => {
                         {REPOS.map(repo => (
                             <button
                                 key={repo.id}
-                                onClick={() => setSelectedProject(repo.id)}
+                                onClick={() => handleSelectProject(repo.id)}
+                                aria-pressed={selectedProject === repo.id}
                                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${selectedProject === repo.id
                                     ? 'bg-white text-uic-blue shadow-sm'
                                     : 'text-gray-600 hover:text-gray-900'
@@ -116,7 +131,7 @@ export const Bounties: React.FC = () => {
 
                 {/* Content */}
                 {loading ? (
-                    <div className="flex justify-center py-12">
+                    <div className="flex justify-center py-12" role="status" aria-label="Loading bounties">
                         <Loader2 className="w-8 h-8 animate-spin text-uic-blue" />
                     </div>
                 ) : error ? (
@@ -128,7 +143,7 @@ export const Bounties: React.FC = () => {
                         No open bounties found at the moment. Check back soon!
                     </div>
                 ) : (
-                    <div className="grid gap-4">
+                    <div className="grid gap-4" role="region" aria-live="polite" aria-label="Bounties list">
                         {filteredBounties.map((bounty) => (
                             <div
                                 key={bounty.id}
@@ -146,6 +161,7 @@ export const Bounties: React.FC = () => {
                                     <h3 className="text-lg font-bold text-gray-900 mb-2 hover:text-uic-blue">
                                         <a href={bounty.html_url} target="_blank" rel="noopener noreferrer">
                                             {bounty.title}
+                                            <span className="sr-only">(opens in new tab)</span>
                                         </a>
                                     </h3>
                                     <div className="flex flex-wrap gap-2">
@@ -170,6 +186,7 @@ export const Bounties: React.FC = () => {
                                         className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-uic-blue hover:bg-blue-800 transition-colors"
                                     >
                                         View Bounty
+                                        <span className="sr-only">(opens in new tab)</span>
                                         <ExternalLink className="ml-2 w-4 h-4" />
                                     </a>
                                 </div>

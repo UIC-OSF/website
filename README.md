@@ -1,73 +1,106 @@
-# React + TypeScript + Vite
+# UIC Tech Solutions Open Source Fund Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the source code for the UIC Tech Solutions Open Source Fund (OSF) website. The website serves to inform visitors about the fund, aggregate open bounties from supported projects, and solicit partnerships.
 
-Currently, two official plugins are available:
+**Live Site:** [https://1111philo.github.io/uic-osf/](https://1111philo.github.io/uic-osf/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Overview
 
-## React Compiler
+The UIC OSF website is a modern, responsive React application designed to highlight the fund's mission: supporting technology projects that work toward measurable public benefit.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Key Features:**
+*   **Dynamic Bounty Aggregation:** Fetches and displays open issues tagged with "bountied" from GitHub repositories (1111, AI Leaders, Equalify).
+*   **Project Showcase:** Highlights supported open source projects.
+*   **Team Section:** Introduces key team members.
+*   **Partnership Solicitation:** Encourages organizations to partner with the fund.
+*   **Accessibility:** Built with accessibility in mind, using semantic HTML and high-contrast colors.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+*   **Framework:** [React](https://react.dev/) + [Vite](https://vitejs.dev/)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **Icons:** [Lucide React](https://lucide.dev/)
+*   **Animations:** [Framer Motion](https://www.framer.com/motion/)
+*   **Deployment:** [GitHub Pages](https://pages.github.com/)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 💻 Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Follow these steps to run the project locally on your machine.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+*   Node.js (v18 or higher recommended)
+*   npm (comes with Node.js)
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/1111philo/uic-osf.git
+    cd uic-osf
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+    The app should now be running at `http://localhost:5173` (or similar).
+
+## 📦 Building and Deploying
+
+### Build for Production
+
+To create a production-ready build:
+
+```bash
+npm run build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This will generate a `dist` folder containing the compiled assets.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Deploy to GitHub Pages
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+This project is configured to deploy to GitHub Pages using the `gh-pages` package.
+
+To deploy the latest changes:
+
+```bash
+npm run deploy
 ```
+
+This script runs the build process (`npm run build`) and then pushes the `dist` folder to the `gh-pages` branch of the repository.
+
+## 📂 Project Structure
+
+```
+uic-osf/
+├── public/              # Static assets
+├── src/
+│   ├── components/      # Reusable UI components (Hero, Bounties, etc.)
+│   ├── App.tsx          # Main application component
+│   ├── main.tsx         # Entry point
+│   └── index.css        # Global styles and Tailwind directives
+├── index.html           # HTML template
+├── package.json         # Project dependencies and scripts
+├── tailwind.config.js   # Tailwind CSS configuration
+├── vite.config.ts       # Vite configuration
+└── README.md            # Project documentation
+```
+
+## 🤝 Contributing
+
+1.  Fork the repository.
+2.  Create a new branch (`git checkout -b feature/YourFeature`).
+3.  Commit your changes (`git commit -m 'Add some feature'`).
+4.  Push to the branch (`git push origin feature/YourFeature`).
+5.  Open a Pull Request.
+
+## 📄 License
+
+[MIT License](LICENSE) (or appropriate license if defined)
