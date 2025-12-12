@@ -2,6 +2,7 @@ import React from 'react';
 import { Linkedin, Globe } from 'lucide-react';
 import blakeImg from '../assets/blake.jpeg';
 import stefinImg from '../assets/stefin.jpeg';
+import jemmaImg from '../assets/jemma.jpg';
 
 interface TeamMemberProps {
     name: string;
@@ -16,7 +17,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({ name, bio, imageUrl, linkedinUr
         <div className="w-32 h-32 mb-4 rounded-full overflow-hidden border-4 border-gray-50 shadow-inner">
             <img src={imageUrl} alt={name} className="w-full h-full object-cover" />
         </div>
-        <h3 className="text-xl font-bold text-gray-900 mb-1">{name}</h3>
+        <h3 className="text-lg font-bold text-gray-900 mb-1">{name}</h3>
         <p className="text-gray-600 text-sm mb-6 leading-relaxed">
             {bio}
         </p>
@@ -54,10 +55,10 @@ export const Team: React.FC = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                     <TeamMember
                         name="Blake Bertuccelli-Booth"
-                        bio="Leading 1111 and Equalify, while fostering partnerships to advance technologies for public benefit."
+                        bio="Setting the fund vision and fostering new partnerships."
                         imageUrl={blakeImg}
                         linkedinUrl="https://www.linkedin.com/in/blake1111/"
                         websiteUrl="http://blake.bertuccelli-booth.org/"
@@ -65,10 +66,18 @@ export const Team: React.FC = () => {
 
                     <TeamMember
                         name="Stefin Pasternak"
-                        bio="Leading AI Leaders, while managing initiatives that gaurantee equitable and sustainable outcomes."
+                        bio="Ensuring equity and sustainability through fund initiatives."
                         imageUrl={stefinImg}
                         linkedinUrl="https://www.linkedin.com/in/stephen-pasternak-11979b155/"
                         websiteUrl="https://www.stefinpasternak.com/"
+                    />
+
+                    <TeamMember
+                        name="Jaeun Jemma Ku"
+                        bio="Managing UIC relationships to ensure maximum impact."
+                        imageUrl={jemmaImg}
+                        linkedinUrl="https://www.linkedin.com/in/jemmaku/"
+                        websiteUrl="https://it.uic.edu/profiles/jaeun-jemma-ku/"
                     />
                 </div>
             </div>

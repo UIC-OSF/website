@@ -29,7 +29,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                             <div className="hidden md:block w-px h-10 bg-gray-300"></div>
                             <div className="hidden md:block">
                                 <a href="/" className="text-xl font-bold text-uic-blue hover:underline">
-                                    Information Technology
+                                    Technology Solutions
                                 </a>
                             </div>
                         </div>

@@ -14,12 +14,10 @@ export const About: React.FC = () => {
             <div className="container mx-auto px-4">
                 <div className="max-w-4xl mx-auto">
                     <div className="prose prose-lg prose-blue mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">UIC TS Open Source Fund</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">UIC Technology Solutions Open Source Fund</h2>
                         <p className="text-2xl font-light text-gray-800 leading-relaxed mb-8">
-                            The Open Source Fund exists to support technology projects that deliver measurable public benefit.
-                            We support open tools and curricula that improve access, equity, and real-world outcomes for learners and institutions.
+                            The Open Source Fund exists to support technology projects that deliver measurable public benefit, elevating UIC to position of Technology Leader.
                         </p>
-
                         <p className="text-lg text-gray-600 mb-8">
                             Launched by <a href="https://it.uic.edu/" className="font-semibold">UIC Technology Solutions</a> in partnership with the <a href="https://wordpress.org/" className="font-semibold">WordPress Foundation</a>,
                             the fund’s initial investments center on digital accessibility and AI literacy.
