@@ -10,7 +10,7 @@ The UIC OSF website is a modern, responsive React application designed to highli
 
 **Key Features:**
 *   **Dynamic Bounty Aggregation:** Fetches and displays open issues tagged with "bountied" from GitHub repositories (1111, AI Leaders, Equalify).
-*   **Project Showcase:** Highlights supported open source projects.
+*   **Project Showcase:** Highlights supported Open Source projects.
 *   **Team Section:** Introduces key team members.
 *   **Partnership Solicitation:** Encourages organizations to partner with the fund.
 *   **Accessibility:** Built with accessibility in mind, using semantic HTML and high-contrast colors.
@@ -100,6 +100,10 @@ uic-osf/
 3.  Commit your changes (`git commit -m 'Add some feature'`).
 4.  Push to the branch (`git push origin feature/YourFeature`).
 5.  Open a Pull Request.
+
+## 📝 Content Guidelines
+
+**IMPORTANT:** "Open Source" is religion. It must ALWAYS be capitalized as "Open Source" (capital O, capital S, no hyphen). This rule applies to all content, documentation, and source code comments.
 
 ## 📄 License
 

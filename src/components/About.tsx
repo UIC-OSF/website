@@ -1,86 +1,91 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, X } from 'lucide-react';
+import infoImage from '../assets/info.jpg';
+
 
 export const About: React.FC = () => {
-    const scrollToPartnership = () => {
-        const element = document.getElementById('partnership-section');
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     return (
-        <section className="py-20 bg-white">
+        <section className="py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+            {/* Decorative Background Elements */}
+            <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-blue-50/50 rounded-full blur-3xl -z-10 transform translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-red-50/50 rounded-full blur-3xl -z-10 transform -translate-x-1/2 translate-y-1/2"></div>
+
             <div className="container mx-auto px-4">
-                <div className="max-w-4xl mx-auto">
-                    <div className="prose prose-lg prose-blue mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">UIC Technology Solutions Open Source Fund</h2>
-                        <p className="text-2xl font-light text-gray-800 leading-relaxed mb-8">
-                            The Open Source Fund exists to support technology projects that deliver measurable public benefit, elevating UIC to position of Technology Leader.
-                        </p>
-                        <p className="text-lg text-gray-600 mb-8">
-                            Launched by <a href="https://it.uic.edu/" className="font-semibold">UIC Technology Solutions</a> in partnership with the <a href="https://wordpress.org/" className="font-semibold">WordPress Foundation</a>,
-                            the fund’s initial investments center on digital accessibility and AI literacy.
-                        </p>
+                <div className="max-w-6xl mx-auto">
 
-                        <div className="grid md:grid-cols-2 gap-8 mb-10">
-                            <div className="bg-gray-50 rounded-xl p-8 border border-gray-100">
-                                <h3 className="text-xl font-bold text-uic-blue mb-4">Early Projects Include:</h3>
-                                <ul className="space-y-4">
-                                    <li className="flex items-start">
-                                        <span className="w-2 h-2 mt-2.5 bg-uic-red rounded-full mr-3 flex-shrink-0"></span>
-                                        <span>
-                                            <a href="https://github.com/equalifyeverything/" target="_blank" rel="noopener noreferrer" className="font-bold text-gray-900 hover:text-uic-blue underline decoration-gray-300 hover:decoration-uic-blue transition-all">Equalify</a>,
-                                            an Open Source accessibility ecosystem maintained by the <a href="https://it.uic.edu/accessibility" className="font-semibold">UIC's Digital Accessibility team</a>.
-                                        </span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="w-2 h-2 mt-2.5 bg-uic-red rounded-full mr-3 flex-shrink-0"></span>
-                                        <span>
-                                            <a href="https://github.com/1111philo/school" target="_blank" rel="noopener noreferrer" className="font-bold text-gray-900 hover:text-uic-blue underline decoration-gray-300 hover:decoration-uic-blue transition-all">1111</a>,
-                                            an AI-first learning management system.
-                                        </span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <span className="w-2 h-2 mt-2.5 bg-uic-red rounded-full mr-3 flex-shrink-0"></span>
-                                        <span>
-                                            <span className="font-bold text-gray-900">AI Leaders</span>,
-                                            a workforce-focused AI literacy course that helps students build practical, portfolio-ready skills.
-                                        </span>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div className="bg-blue-50 rounded-xl p-8 border border-blue-100">
-                                <h3 className="text-xl font-bold text-uic-blue mb-4">What is Open Source?</h3>
-                                <p className="text-gray-700 mb-4 text-sm leading-relaxed">
-                                    Open Source software is code that anyone can inspect, modify, and enhance. It's built on collaboration and transparency.
+                    <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                        <div className="order-2 lg:order-1">
+                            <h2 className="text-4xl md:text-5xl font-bold text-uic-blue mb-8 leading-tight">
+                                Innovation with a <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-uic-red to-orange-600">Double Bottom Line</span>
+                            </h2>
+                            <div className="prose prose-lg prose-blue text-gray-600 mb-8 leading-relaxed">
+                                <p className="text-xl font-light text-gray-800 mb-6">
+                                    The UIC Tech Solutions Open Source Fund is a <strong>6-month experiment</strong> exploring a bold idea: that IT infrastructure can directly serve the greater mission of an academic institution.
                                 </p>
-                                <div className="bg-white/50 p-4 rounded-lg border border-blue-100 mb-4">
-                                    <p className="italic text-gray-600 text-sm">
-                                        "The freedom to run the program, to study how it works, to redistribute copies, and to improve the program."
-                                    </p>
-                                </div>
-                                <a
-                                    href="https://ma.tt/2014/01/four-freedoms/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center text-uic-red hover:underline font-medium text-sm"
-                                >
-                                    Read Matt Mullenweg on The Four Freedoms
-                                    <ArrowRight className="ml-1 w-3 h-3" />
-                                </a>
+                                <p>
+                                    Our goal is simple yet ambitious. We support projects that deliver <span className="font-semibold text-uic-blue">measurable benefit for UIC</span> while simultaneously providing <span className="font-semibold text-uic-blue">measurable benefit for the public</span>. By partnering with outside funders who share this vision, we are proving that Open Source technology is a bridge between the university and the world.
+                                </p>
                             </div>
+
+                            <a href="https://chancellor.uic.edu/about/mission/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-uic-red font-semibold hover:text-red-700 transition-colors">
+                                Read about UIC's Mission
+                                <ArrowRight className="ml-2 w-4 h-4" />
+                            </a>
                         </div>
 
-                        <div className="text-center">
-                            <button
-                                onClick={scrollToPartnership}
-                                className="inline-flex items-center text-uic-blue font-bold hover:text-uic-red transition-colors text-lg group"
+                        <div className="order-1 lg:order-2 flex justify-center">
+                            <div className="cursor-pointer" onClick={() => setIsModalOpen(true)}>
+                                <img
+                                    src={infoImage}
+                                    alt="UIC Benefit, Public Benefit, and Donor Benefit meet in the middle where Fund Project is written"
+                                    className="w-full max-w-md object-contain h-auto rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Image Modal */}
+                    {isModalOpen && (
+                        <div
+                            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm transition-all duration-300"
+                            onClick={() => setIsModalOpen(false)}
+                        >
+                            <div className="relative max-w-7xl w-full max-h-[90vh] flex items-center justify-center">
+                                <button
+                                    className="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors"
+                                    onClick={() => setIsModalOpen(false)}
+                                >
+                                    <X className="w-8 h-8" />
+                                </button>
+                                <img
+                                    src={infoImage}
+                                    alt="Diagram Full Screen"
+                                    className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                                    onClick={(e) => e.stopPropagation()}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    <div className="max-w-3xl mx-auto">
+                        <div className="bg-blue-50 border border-blue-100 rounded-xl p-8 text-center">
+                            <h3 className="text-2xl font-bold text-uic-blue mb-4">What is Open Source?</h3>
+                            <p className="text-gray-700 mb-6 text-lg leading-relaxed">
+                                Open Source means the code is publicly available under a license that lets anyone run, study, modify, and redistribute it.
+                            </p>
+                            <a
+                                href="https://ma.tt/2014/01/four-freedoms/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center text-uic-red font-bold hover:text-red-700 transition-colors"
                             >
-                                Partner with us to build the future
-                                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </button>
+                                Related Post by Matt Mullenweg
+                                <ArrowRight className="ml-2 w-4 h-4" />
+                            </a>
                         </div>
                     </div>
                 </div>

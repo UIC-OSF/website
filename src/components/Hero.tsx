@@ -33,7 +33,7 @@ export const Hero: React.FC = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="text-xl md:text-3xl text-gray-700 font-light leading-relaxed mb-10"
                     >
-                        Support technology projects that work toward measurable public benefit.
+                        Support technology projects that work toward <span className="font-semibold text-uic-blue">measurable benefit for UIC and the public</span>.
                     </motion.p>
 
                     <motion.div

@@ -3,13 +3,15 @@ import { Linkedin, Globe } from 'lucide-react';
 import blakeImg from '../assets/blake.jpeg';
 import stefinImg from '../assets/stefin.jpeg';
 import jemmaImg from '../assets/jemma.jpg';
+import maryImg from '../assets/mary.jpg';
+import jasonImg from '../assets/jason.jpg';
 
 interface TeamMemberProps {
     name: string;
     bio: string;
     imageUrl: string;
     linkedinUrl: string;
-    websiteUrl: string;
+    websiteUrl?: string;
 }
 
 const TeamMember: React.FC<TeamMemberProps> = ({ name, bio, imageUrl, linkedinUrl, websiteUrl }) => (
@@ -31,15 +33,17 @@ const TeamMember: React.FC<TeamMemberProps> = ({ name, bio, imageUrl, linkedinUr
             >
                 <Linkedin className="w-5 h-5" />
             </a>
-            <a
-                href={websiteUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 text-gray-400 hover:text-uic-blue hover:bg-blue-50 rounded-full transition-colors"
-                aria-label={`${name}'s Website`}
-            >
-                <Globe className="w-5 h-5" />
-            </a>
+            {websiteUrl && (
+                <a
+                    href={websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 text-gray-400 hover:text-uic-blue hover:bg-blue-50 rounded-full transition-colors"
+                    aria-label={`${name}'s Website`}
+                >
+                    <Globe className="w-5 h-5" />
+                </a>
+            )}
         </div>
     </div>
 );
@@ -55,7 +59,7 @@ export const Team: React.FC = () => {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto justify-items-center">
                     <TeamMember
                         name="Blake Bertuccelli-Booth"
                         bio="Setting the fund vision and fostering new partnerships."
@@ -78,6 +82,21 @@ export const Team: React.FC = () => {
                         imageUrl={jemmaImg}
                         linkedinUrl="https://www.linkedin.com/in/jemmaku/"
                         websiteUrl="https://it.uic.edu/profiles/jaeun-jemma-ku/"
+                    />
+
+                    <TeamMember
+                        name="Mary Hubbard"
+                        bio="Managing the WordPress + Automattic Partnership."
+                        imageUrl={maryImg}
+                        linkedinUrl="https://www.linkedin.com/in/maryfhubbard/"
+                        websiteUrl="https://mary.blog/"
+                    />
+
+                    <TeamMember
+                        name="Jason Maslanka"
+                        bio="Sets accountability measures to drive and determine success."
+                        imageUrl={jasonImg}
+                        linkedinUrl="https://www.linkedin.com/in/jasonmaslanka/"
                     />
                 </div>
             </div>

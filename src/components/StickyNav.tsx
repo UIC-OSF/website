@@ -10,8 +10,8 @@ const SECTION_LINKS: SectionLink[] = [
     { label: 'About', href: '#about-section' },
     { label: 'Projects', href: '#projects-section' },
     { label: 'Bounties', href: '#bounties-section' },
+    { label: 'Partners', href: '#partners-section' },
     { label: 'Team', href: '#team-section' },
-    { label: 'Partner', href: '#partnership-section' },
 ];
 
 export const StickyNav: React.FC = () => {
