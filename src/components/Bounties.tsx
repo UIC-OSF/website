@@ -84,9 +84,16 @@ export const Bounties: React.FC<BountiesProps> = ({ selectedProject = 'all', onS
     useEffect(() => {
         if (loading) return;
 
-        const count = filteredBounties.length;
-        const projectName = selectedProject === 'all' ? 'All Projects' : getProjectName(selectedProject);
-        setAnnouncement(`Showing ${projectName}. ${count} ${count === 1 ? 'bounty' : 'bounties'} found.`);
+        // Clear announcement first to force screen readers to register the change
+        setAnnouncement('');
+
+        const timer = setTimeout(() => {
+            const count = filteredBounties.length;
+            const projectName = selectedProject === 'all' ? 'All Projects' : getProjectName(selectedProject);
+            setAnnouncement(`Showing ${projectName}. ${count} ${count === 1 ? 'bounty' : 'bounties'} found.`);
+        }, 100);
+
+        return () => clearTimeout(timer);
     }, [selectedProject, filteredBounties.length, loading]);
 
     return (
@@ -212,7 +219,7 @@ export const Bounties: React.FC<BountiesProps> = ({ selectedProject = 'all', onS
                     </div>
                 )}
                 {/* Live region for status updates */}
-                <div role="status" aria-live="polite" className="sr-only">
+                <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
                     {announcement}
                 </div>
             </div>
