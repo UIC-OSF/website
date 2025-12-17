@@ -219,7 +219,7 @@ export const Bounties: React.FC<BountiesProps> = ({ selectedProject = 'all', onS
                     </div>
                 )}
                 {/* Live region for status updates */}
-                <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+                <div role="status" aria-live="assertive" aria-atomic="true" className="sr-only">
                     {announcement}
                 </div>
             </div>
