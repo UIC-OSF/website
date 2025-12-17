@@ -51,7 +51,7 @@ export const Projects: React.FC<{ onScrollToBounties: (projectId: string) => voi
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">Supported Projects</h2>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                        We are proud to support Open Source initiatives that drive innovation in education, AI literacy, and accessibility.
+                        We support Open Source initiatives that drive positive social change.
                     </p>
                 </div>
 
@@ -60,7 +60,7 @@ export const Projects: React.FC<{ onScrollToBounties: (projectId: string) => voi
 
                     <ProjectCard
                         title="AI Leaders"
-                        description="Empowering the next generation of tech leaders with Generative AI Literacy activities that work toward a WordPress-powered portfolio."
+                        description="Empowering the next generation of tech leaders with Generative AI Literacy activities that work toward a WordPress-powered, workforce-focused portfolio."
                         icon={<Brain className="w-8 h-8" />}
                         bountyId="ai-leaders"
                         onBountyClick={handleProjectClick}
