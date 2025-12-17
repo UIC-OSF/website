@@ -38,13 +38,13 @@ export const About: React.FC = () => {
                         </div>
 
                         <div className="order-1 lg:order-2 flex justify-center">
-                            <div className="cursor-pointer" onClick={() => setIsModalOpen(true)}>
+                            <button className="cursor-pointer appearance-none border-none bg-transparent p-0" onClick={() => setIsModalOpen(true)} aria-label="Open diagram: UIC Benefit, Public Benefit, and Donor Benefit">
                                 <img
                                     src={infoImage}
-                                    alt="UIC Benefit, Public Benefit, and Donor Benefit meet in the middle where Fund Project is written"
+                                    alt="Diagram illustrating with three circles: UIC Benefit, Public Benefit, and Donor Benefit. Circles intersect to form a hexagon where funded project is written."
                                     className="w-full max-w-md object-contain h-auto rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300"
                                 />
-                            </div>
+                            </button>
                         </div>
                     </div>
 
@@ -58,6 +58,7 @@ export const About: React.FC = () => {
                                 <button
                                     className="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors"
                                     onClick={() => setIsModalOpen(false)}
+                                    aria-label="Close modal"
                                 >
                                     <X className="w-8 h-8" />
                                 </button>

@@ -23,7 +23,7 @@ export const StickyNav: React.FC = () => {
         const handleScroll = () => {
             if (navRef.current) {
                 const rect = navRef.current.getBoundingClientRect();
-                setIsSticky(rect.top <= 1);
+                setIsSticky(rect.top <= 0);
             }
         };
 

@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Menu, X, Search } from 'lucide-react';
 import uicLogo from '../assets/uic-logo.svg';
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearch = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            window.location.href = `https://it.uic.edu/search/?q=${encodeURIComponent(searchQuery)}&search=Submit`;
+        }
+    };
 
     return (
         <div className="min-h-screen flex flex-col font-sans text-gray-900">
@@ -36,12 +45,40 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
                         {/* Desktop Nav */}
                         <nav className="hidden md:flex items-center space-x-6" aria-label="Desktop navigation">
-                            <a href="#" className="text-sm font-medium text-gray-700 hover:text-uic-red">Services</a>
-                            <a href="#" className="text-sm font-medium text-gray-700 hover:text-uic-red">Support</a>
-                            <a href="#" className="text-sm font-medium text-gray-700 hover:text-uic-red">About</a>
-                            <button className="text-gray-600 hover:text-uic-red">
-                                <Search className="w-5 h-5" />
-                            </button>
+                            <a href="https://it.uic.edu/services/" className="text-sm font-medium text-gray-700 hover:text-uic-red">Services</a>
+                            <a href="https://it.uic.edu/support/" className="text-sm font-medium text-gray-700 hover:text-uic-red">Support</a>
+                            <a href="https://it.uic.edu/researchers/" className="text-sm font-medium text-gray-700 hover:text-uic-red">Research</a>
+                            <a href="https://it.uic.edu/learning/" className="text-sm font-medium text-gray-700 hover:text-uic-red">Learning</a>
+                            <a href="https://it.uic.edu/security/" className="text-sm font-medium text-gray-700 hover:text-uic-red">Security</a>
+                            <a href="https://it.uic.edu/accessibility/" className="text-sm font-medium text-gray-700 hover:text-uic-red">Digital Accessibility</a>
+                            <a href="https://it.uic.edu/about/" className="text-sm font-medium text-gray-700 hover:text-uic-red">About</a>
+
+                            <div className="relative">
+                                <button
+                                    className="text-gray-600 hover:text-uic-red focus:outline-none"
+                                    onClick={() => setIsSearchOpen(!isSearchOpen)}
+                                    aria-label="Toggle search"
+                                    aria-expanded={isSearchOpen}
+                                >
+                                    <Search className="w-5 h-5" />
+                                </button>
+                                {isSearchOpen && (
+                                    <form
+                                        onSubmit={handleSearch}
+                                        className="absolute right-0 mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-xl p-2 z-50 animate-in fade-in slide-in-from-top-2"
+                                    >
+                                        <input
+                                            type="text"
+                                            placeholder="Search..."
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                            className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-uic-red focus:border-transparent"
+                                            autoFocus
+                                            aria-label="Search"
+                                        />
+                                    </form>
+                                )}
+                            </div>
                         </nav>
 
                         {/* Mobile Menu Button */}
@@ -60,10 +97,28 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 {isMenuOpen && (
                     <nav className="md:hidden bg-gray-50 border-t border-gray-200" aria-label="Mobile navigation">
                         <div className="px-4 py-2 space-y-2">
-                            <a href="#" className="block py-2 text-gray-700 hover:text-uic-red">Services</a>
-                            <a href="#" className="block py-2 text-gray-700 hover:text-uic-red">Support</a>
-                            <a href="#" className="block py-2 text-gray-700 hover:text-uic-red">Security</a>
-                            <a href="#" className="block py-2 text-gray-700 hover:text-uic-red">About</a>
+                            <a href="https://it.uic.edu/services/" className="block py-2 text-gray-700 hover:text-uic-red">Services</a>
+                            <a href="https://it.uic.edu/support/" className="block py-2 text-gray-700 hover:text-uic-red">Support</a>
+                            <a href="https://it.uic.edu/researchers/" className="block py-2 text-gray-700 hover:text-uic-red">Research</a>
+                            <a href="https://it.uic.edu/learning/" className="block py-2 text-gray-700 hover:text-uic-red">Learning</a>
+                            <a href="https://it.uic.edu/security/" className="block py-2 text-gray-700 hover:text-uic-red">Security</a>
+                            <a href="https://it.uic.edu/accessibility/" className="block py-2 text-gray-700 hover:text-uic-red">Digital Accessibility</a>
+                            <a href="https://it.uic.edu/about/" className="block py-2 text-gray-700 hover:text-uic-red">About</a>
+                            <form onSubmit={handleSearch} className="py-2">
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        placeholder="Search..."
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-uic-red"
+                                        aria-label="Search"
+                                    />
+                                    <button type="submit" className="absolute right-3 top-2.5 text-gray-400">
+                                        <Search className="w-5 h-5" />
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </nav>
                 )}
@@ -93,33 +148,34 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         <div>
                             <h3 className="font-bold text-uic-blue mb-4">Resources</h3>
                             <ul className="space-y-2 text-sm text-gray-600">
-                                <li><a href="#" className="hover:underline">Academic Calendar</a></li>
-                                <li><a href="#" className="hover:underline">Library</a></li>
-                                <li><a href="#" className="hover:underline">Maps</a></li>
-                                <li><a href="#" className="hover:underline">Directory</a></li>
+                                <li><a href="https://catalog.uic.edu/ucat/academic-calendar/" className="hover:underline">Academic Calendar</a></li>
+                                <li><a href="https://library.uic.edu/" className="hover:underline">Library</a></li>
+                                <li><a href="https://maps.uic.edu/" className="hover:underline">Maps</a></li>
+                                <li><a href="https://www.uic.edu/apps/departments-az/search" className="hover:underline">Directory</a></li>
+                                <li><a href="https://today.uic.edu/events" className="hover:underline">Event Calendar</a></li>
                             </ul>
                         </div>
                         <div>
                             <h3 className="font-bold text-uic-blue mb-4">Quick Links</h3>
                             <ul className="space-y-2 text-sm text-gray-600">
-                                <li><a href="#" className="hover:underline">Apply</a></li>
-                                <li><a href="#" className="hover:underline">Visit</a></li>
-                                <li><a href="#" className="hover:underline">Give</a></li>
-                                <li><a href="#" className="hover:underline">Careers</a></li>
+                                <li><a href="https://it.uic.edu/support/" className="hover:underline">Get Support</a></li>
+                                <li><a href="https://uic.edu/about/job-opportunities" className="hover:underline">Job Openings</a></li>
+                                <li><a href="https://emergency.uic.edu/" className="hover:underline">Emergency Information</a></li>
+                                <li><a href="https://reportaconcern.uic.edu/" className="hover:underline">Report a Concern</a></li>
+                                <li><a href="https://uihealth.uic.edu/" className="hover:underline">UI Health</a></li>
                             </ul>
                         </div>
                         <div>
-                            <h3 className="font-bold text-uic-blue mb-4">Connect</h3>
-                            <div className="flex space-x-4" aria-hidden="true">
-                                {/* Social icons placeholders */}
-                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                                <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                            </div>
+                            <h3 className="font-bold text-uic-blue mb-4">University</h3>
+                            <ul className="space-y-2 text-sm text-gray-600">
+                                <li><a href="https://www.uillinois.edu/" className="hover:underline">University of Illinois System</a></li>
+                                <li><a href="https://illinois.edu/" className="hover:underline">Urbana-Champaign</a></li>
+                                <li><a href="https://www.uis.edu/" className="hover:underline">Springfield</a></li>
+                            </ul>
                         </div>
                     </div>
                     <div className="border-t border-gray-300 pt-8 text-center text-sm text-gray-500">
-                        &copy; {new Date().getFullYear()} The Board of Trustees of the University of Illinois  |  Privacy Statement
+                        &copy; {new Date().getFullYear()} The Board of Trustees of the University of Illinois  |  <a href="https://www.vpaa.uillinois.edu/resources/web_privacy" className="hover:underline">Privacy Statement</a>
                     </div>
                 </div>
                 <div className="bg-uic-blue h-2 w-full mt-8"></div>

@@ -27,12 +27,12 @@ function App() {
     <Layout>
       <Hero />
       <StickyNav />
-      <div id="about-section" tabIndex={-1} className="outline-none focus:outline-none scroll-mt-24"><About /></div>
-      <div id="projects-section" tabIndex={-1} className="outline-none focus:outline-none scroll-mt-24"><Projects onScrollToBounties={scrollToBounties} /></div>
-      <div id="bounties-section" tabIndex={-1} className="outline-none focus:outline-none scroll-mt-24"><Bounties selectedProject={selectedProject} onSelectProject={setSelectedProject} /></div>
-      <div id="partners-section" tabIndex={-1} className="outline-none focus:outline-none scroll-mt-24"><Partners /></div>
-      <div id="team-section" tabIndex={-1} className="outline-none focus:outline-none scroll-mt-24"><Team /></div>
-      <div id="partnership-section" tabIndex={-1} className="outline-none focus:outline-none scroll-mt-24"><PartnershipSolicitation /></div>
+      <div id="about-section" tabIndex={-1} className="scroll-mt-24"><About /></div>
+      <div id="projects-section" tabIndex={-1} className="scroll-mt-24"><Projects onScrollToBounties={scrollToBounties} /></div>
+      <div id="bounties-section" tabIndex={-1} className="scroll-mt-24"><Bounties selectedProject={selectedProject} onSelectProject={setSelectedProject} /></div>
+      <div id="partners-section" tabIndex={-1} className="scroll-mt-24"><Partners /></div>
+      <div id="team-section" tabIndex={-1} className="scroll-mt-24"><Team /></div>
+      <div id="partnership-section" tabIndex={-1} className="scroll-mt-24"><PartnershipSolicitation /></div>
     </Layout>
   );
 }
