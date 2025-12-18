@@ -15,7 +15,7 @@ export const WordPressPartnership: React.FC = () => {
                     <div className="max-w-2xl text-center md:text-left">
                         <h2 className="text-3xl font-bold text-gray-900 mb-4">Partnership with WordPress</h2>
                         <p className="text-lg text-gray-700 mb-4">
-                            WordPress is a powerful force for democratizing publishing and Social Benefit development.
+                            WordPress is a powerful force for democratizing publishing and Open Source development.
                         </p>
                         <p className="text-gray-600">
                             We are incorporating WordPress into our work while also encouraging the fund team to contribute back to the WordPress project, fostering a cycle of innovation and community support.

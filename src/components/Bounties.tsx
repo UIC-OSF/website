@@ -117,7 +117,7 @@ export const Bounties: React.FC<BountiesProps> = ({ selectedProject = 'all', onS
                             What is a Bounty?
                         </h3>
                         <p className="text-gray-700 text-sm">
-                            A bounty is a monetary reward offered for completing a specific task or solving a problem in a Social Benefit project.
+                            A bounty is a monetary reward offered for completing a specific task or solving a problem in an Open Source project.
                             It's a way to incentivize contributions and support developers who dedicate their time to public benefit technology.
                         </p>
                     </div>

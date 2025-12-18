@@ -12,11 +12,11 @@ export const PartnershipSolicitation: React.FC = () => {
                 </p>
 
                 <a
-                    href="mailto:sbf@uic.edu"
+                    href="mailto:osf@uic.edu"
                     className="inline-flex items-center px-8 py-4 bg-white text-uic-blue font-bold text-lg rounded-full hover:bg-gray-100 transition-colors duration-200 shadow-lg"
                 >
                     <Mail className="mr-3 w-5 h-5" />
-                    sbf@uic.edu
+                    osf@uic.edu
                 </a>
             </div>
         </section>
