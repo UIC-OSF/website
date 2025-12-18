@@ -2,7 +2,7 @@
 
 This repository contains the source code for the UIC Tech Solutions Open Source Fund (OSF) website. The website serves to inform visitors about the fund, aggregate open bounties from supported projects, and solicit partnerships.
 
-**Live Site:** [https://1111philo.github.io/uic-osf/](https://1111philo.github.io/uic-osf/)
+**Live Site:** [https://uic-osf.github.io/website/](https://uic-osf.github.io/website/)
 
 ## 🚀 Overview
 
@@ -37,8 +37,8 @@ Follow these steps to run the project locally on your machine.
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/1111philo/uic-osf.git
-    cd uic-osf
+    git clone https://github.com/UIC-OSF/website.git
+    cd website
     ```
 
 2.  **Install dependencies:**
@@ -65,16 +65,11 @@ npm run build
 This will generate a `dist` folder containing the compiled assets.
 
 ### Deploy to GitHub Pages
+ 
+This project is configured to deploy to GitHub Pages automatically via GitHub Actions whenever changes are pushed to the `main` branch.
+ 
+The deployment workflow is defined in `.github/workflows/deploy.yml`.
 
-This project is configured to deploy to GitHub Pages using the `gh-pages` package.
-
-To deploy the latest changes:
-
-```bash
-npm run deploy
-```
-
-This script runs the build process (`npm run build`) and then pushes the `dist` folder to the `gh-pages` branch of the repository.
 
 ## 📂 Project Structure
 

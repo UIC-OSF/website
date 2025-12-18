@@ -7,6 +7,7 @@
     "type": "git",
     "url": "https://github.com/UIC-OSF/website.git"
   },
+  "homepage": "https://uic-osf.github.io/website/",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
