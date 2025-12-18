@@ -65,7 +65,7 @@ export const Projects: React.FC<{ onScrollToBounties: (projectId: string) => voi
                     <ProjectCard
                         title="AI Leaders"
                         subtitle="WordPress Edition"
-                        description="Generative AI course material empowering learners to get jobs that require AI skills. Our first course, available in June, will focus on preparing learners for living wage carreers with WordPress."
+                        description="Generative AI course material empowering learners to get jobs that require AI skills. Our first course, available in June, will focus on preparing learners for living wage careers within the WordPress ecosystem."
                         icon={<Brain className="w-8 h-8" />}
                         bountyId="ai-leaders"
                         onBountyClick={handleProjectClick}
