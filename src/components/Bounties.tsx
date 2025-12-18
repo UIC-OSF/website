@@ -20,7 +20,7 @@ interface RepoConfig {
 }
 
 const REPOS: RepoConfig[] = [
-    { id: 'ai-leaders', owner: '1111philo', name: 'ai-leaders', displayName: 'AI Leaders Library' },
+    { id: 'ai-leaders', owner: '1111philo', name: 'ai-leaders', displayName: 'AI Leaders' },
     { id: 'equalify', owner: 'EqualifyEverything', name: 'equalify', displayName: 'Equalify' },
 
 ];

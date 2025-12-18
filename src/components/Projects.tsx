@@ -3,6 +3,7 @@ import { ArrowRight, Brain, Accessibility } from 'lucide-react';
 
 interface ProjectCardProps {
     title: string;
+    subtitle?: string;
     description: string;
     icon: React.ReactNode;
     logoUrl?: string;
@@ -10,7 +11,7 @@ interface ProjectCardProps {
     onBountyClick: (id: string) => void;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, icon, logoUrl, bountyId, onBountyClick }) => (
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, description, icon, logoUrl, bountyId, onBountyClick }) => (
     <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
         <div className="mb-6 h-16 flex items-center justify-start">
             {logoUrl ? (
@@ -20,7 +21,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, icon, log
                     <div className="p-3 bg-uic-blue/10 rounded-lg text-uic-blue">
                         {icon}
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
+                    <div>
+                        <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
+                        {subtitle && <p className="text-sm font-semibold text-uic-red uppercase tracking-wide">{subtitle}</p>}
+                    </div>
                 </div>
             )}
         </div>
@@ -59,8 +63,9 @@ export const Projects: React.FC<{ onScrollToBounties: (projectId: string) => voi
 
 
                     <ProjectCard
-                        title="AI Leaders Library"
-                        description="Empowering the next generation of tech leaders with Generative AI Literacy activities that work toward a WordPress-powered, workforce-focused portfolio."
+                        title="AI Leaders"
+                        subtitle="WordPress Edition"
+                        description="Course material empowering learners to get jobs that require AI skills. Our first course, available in June, will focus on preparing learners for WordPress jobs."
                         icon={<Brain className="w-8 h-8" />}
                         bountyId="ai-leaders"
                         onBountyClick={handleProjectClick}
@@ -68,7 +73,7 @@ export const Projects: React.FC<{ onScrollToBounties: (projectId: string) => voi
 
                     <ProjectCard
                         title="Equalify"
-                        description="A Social Benefit accessibility ecosystem ensuring the web is inclusive for everyone through automated testing and remediation tools."
+                        description="A Social Benefit accessibility ecosystem taking the complexity out of compliance by making automated testing and remediation tools available to everyone."
                         icon={<Accessibility className="w-8 h-8" />}
                         logoUrl="https://equalify.app/wp-content/uploads/2024/04/Equalify-Logo-768x237.png"
                         bountyId="equalify"
