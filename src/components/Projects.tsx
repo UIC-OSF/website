@@ -55,7 +55,7 @@ export const Projects: React.FC<{ onScrollToBounties: (projectId: string) => voi
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">Supported Projects</h2>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                        We support Social Benefit initiatives that drive positive social change.
+                        We support Social Benefit initiatives that produce measurable social benefit.
                     </p>
                 </div>
 

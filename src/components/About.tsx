@@ -24,10 +24,10 @@ export const About: React.FC = () => {
                             </h2>
                             <div className="prose prose-lg prose-blue text-gray-600 mb-8 leading-relaxed">
                                 <p className="text-xl font-light text-gray-800 mb-6">
-                                    The UIC Tech Solutions Social Benefit Fund explores a bold idea: that IT infrastructure can directly serve the greater mission of an academic institution.
+                                    The UIC Tech Solutions Social Benefit Fund explores a bold idea: that the work of IT can also serve the greater mission of an academic institution.
                                 </p>
                                 <p>
-                                    Our goal is simple yet ambitious. We support projects that deliver <span className="font-semibold text-uic-blue">measurable benefit for UIC</span> while simultaneously providing <span className="font-semibold text-uic-blue">measurable benefit for the public</span>. By partnering with outside funders who share this vision, we are proving that Social Benefit technology is a bridge between the university and the world. Our future goal is to become an endowed part of UIC, ensuring Social Benefit technology benefits the universe for many generations to come.
+                                    Our goal is simple yet ambitious. We support projects that deliver <span className="font-semibold text-uic-blue">measurable benefit for UIC</span> while simultaneously providing <span className="font-semibold text-uic-blue">measurable benefit for the public</span>. By partnering with outside funders who share this vision, we are proving how technology can be a bridge between the university and the world. Our future goal is to become an endowed part of UIC, ensuring the work IT does benefits the universe for many generations to come.
                                 </p>
                             </div>
 
