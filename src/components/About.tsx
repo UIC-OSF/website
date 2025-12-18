@@ -24,7 +24,7 @@ export const About: React.FC = () => {
                             </h2>
                             <div className="prose prose-lg prose-blue text-gray-600 mb-8 leading-relaxed">
                                 <p className="text-xl font-light text-gray-800 mb-6">
-                                    The UIC Tech Solutions Social Benefit Fund explores a bold idea: that the work of IT can also serve the greater mission of an academic institution.
+                                    The UIC Tech Solutions Open Source Fund explores a bold idea: that the work of IT can also serve the greater mission of an academic institution.
                                 </p>
                                 <p>
                                     Our goal is simple yet ambitious. We support projects that deliver <span className="font-semibold text-uic-blue">measurable benefit for UIC</span> while simultaneously providing <span className="font-semibold text-uic-blue">measurable benefit for the public</span>. By partnering with outside funders who share this vision, we are proving how technology can be a bridge between the university and the world. Our future goal is to become an endowed part of UIC, ensuring the work IT does benefits the universe for many generations to come.
@@ -45,6 +45,24 @@ export const About: React.FC = () => {
                                     className="w-full max-w-md object-contain h-auto rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300"
                                 />
                             </button>
+                        </div>
+                    </div>
+
+                    <div className="max-w-3xl mx-auto mb-20">
+                        <div className="bg-blue-50 border border-blue-100 rounded-xl p-8 text-center">
+                            <h3 className="text-2xl font-bold text-uic-blue mb-4">What is Open Source?</h3>
+                            <p className="text-gray-700 mb-6 text-lg leading-relaxed">
+                                Open Source means the code is publicly available under a license that lets anyone run, study, modify, and redistribute it.
+                            </p>
+                            <a
+                                href="https://ma.tt/2014/01/four-freedoms/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center text-uic-red font-bold hover:text-red-700 transition-colors"
+                            >
+                                Related Post by Matt Mullenweg
+                                <ArrowRight className="ml-2 w-4 h-4" />
+                            </a>
                         </div>
                     </div>
 

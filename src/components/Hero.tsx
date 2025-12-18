@@ -25,7 +25,7 @@ export const Hero: React.FC = () => {
                         transition={{ duration: 0.6 }}
                         className="text-5xl md:text-7xl font-bold text-uic-blue mb-8 tracking-tight"
                     >
-                        Social Benefit Fund
+                        Open Source Fund
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
