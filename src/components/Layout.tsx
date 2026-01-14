@@ -44,7 +44,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         </div>
 
                         {/* Desktop Nav */}
-                        <nav className="hidden md:flex items-center space-x-6" aria-label="Desktop navigation">
+                        <nav className="hidden lg:flex items-center space-x-6" aria-label="Desktop navigation">
                             <a href="https://it.uic.edu/services/" className="text-sm font-medium text-gray-700 hover:text-uic-red">Services</a>
                             <a href="https://it.uic.edu/support/" className="text-sm font-medium text-gray-700 hover:text-uic-red">Support</a>
                             <a href="https://it.uic.edu/researchers/" className="text-sm font-medium text-gray-700 hover:text-uic-red">Research</a>
@@ -83,7 +83,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
                         {/* Mobile Menu Button */}
                         <button
-                            className="md:hidden text-gray-600"
+                            className="lg:hidden text-gray-600"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             aria-label="Toggle menu"
                             aria-expanded={isMenuOpen}
@@ -95,7 +95,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
                 {/* Mobile Nav */}
                 {isMenuOpen && (
-                    <nav className="md:hidden bg-gray-50 border-t border-gray-200" aria-label="Mobile navigation">
+                    <nav className="lg:hidden bg-gray-50 border-t border-gray-200" aria-label="Mobile navigation">
                         <div className="px-4 py-2 space-y-2">
                             <a href="https://it.uic.edu/services/" className="block py-2 text-gray-700 hover:text-uic-red">Services</a>
                             <a href="https://it.uic.edu/support/" className="block py-2 text-gray-700 hover:text-uic-red">Support</a>

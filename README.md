@@ -1,6 +1,6 @@
 # UIC Tech Solutions Open Source Fund Website
 
-This repository contains the source code for the UIC Tech Solutions Open Source Fund (OSF) website. The website serves to inform visitors about the fund, aggregate open bounties from supported projects, and solicit partnerships.
+This repository contains the source code for the UIC Tech Solutions Open Source Fund (OSF) website. The website serves to inform visitors about the fund, aggregate open micro-grants from supported projects, and solicit partnerships.
 
 **Live Site:** [https://uic-osf.github.io/website/](https://uic-osf.github.io/website/)
 
@@ -9,7 +9,7 @@ This repository contains the source code for the UIC Tech Solutions Open Source 
 The UIC OSF website is a modern, responsive React application designed to highlight the fund's mission: supporting technology projects that work toward measurable public benefit.
 
 **Key Features:**
-*   **Dynamic Bounty Aggregation:** Fetches and displays open issues tagged with "bountied" from GitHub repositories (1111, AI Leaders, Equalify).
+*   **Dynamic Micro-Grant Aggregation:** Fetches and displays open issues tagged with "micro-grant" from GitHub repositories (1111, AI Leaders, Equalify).
 *   **Project Showcase:** Highlights supported Open Source projects.
 *   **Team Section:** Introduces key team members.
 *   **Partnership Solicitation:** Encourages organizations to partner with the fund.
@@ -77,7 +77,7 @@ The deployment workflow is defined in `.github/workflows/deploy.yml`.
 uic-osf/
 ├── public/              # Static assets
 ├── src/
-│   ├── components/      # Reusable UI components (Hero, Bounties, etc.)
+│   ├── components/      # Reusable UI components (Hero, MicroGrants, etc.)
 │   ├── App.tsx          # Main application component
 │   ├── main.tsx         # Entry point
 │   └── index.css        # Global styles and Tailwind directives

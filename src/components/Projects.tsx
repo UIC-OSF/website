@@ -7,11 +7,11 @@ interface ProjectCardProps {
     description: string;
     icon: React.ReactNode;
     logoUrl?: string;
-    bountyId: string;
-    onBountyClick: (id: string) => void;
+    microGrantId: string;
+    onMicroGrantClick: (id: string) => void;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, description, icon, logoUrl, bountyId, onBountyClick }) => (
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, description, icon, logoUrl, microGrantId, onMicroGrantClick }) => (
     <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
         <div className="mb-6 h-16 flex items-center justify-start">
             {logoUrl ? (
@@ -34,19 +34,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, description,
         </p>
 
         <button
-            onClick={() => onBountyClick(bountyId)}
+            onClick={() => onMicroGrantClick(microGrantId)}
             className="w-full py-3 px-6 font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center group bg-gray-50 text-uic-blue hover:bg-uic-blue hover:text-white"
         >
-            {`${title} Bounties`}
+            {`${title} Micro-Grants`}
             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
     </div>
 );
 
-export const Projects: React.FC<{ onScrollToBounties: (projectId: string) => void }> = ({ onScrollToBounties }) => {
+export const Projects: React.FC<{ onScrollToMicroGrants: (projectId: string) => void }> = ({ onScrollToMicroGrants }) => {
 
     const handleProjectClick = (projectId: string) => {
-        onScrollToBounties(projectId);
+        onScrollToMicroGrants(projectId);
     };
 
     return (
@@ -67,8 +67,8 @@ export const Projects: React.FC<{ onScrollToBounties: (projectId: string) => voi
                         subtitle="WordPress Edition"
                         description="Generative AI course material empowering learners to get jobs that require AI skills. Our first course, available in June, will focus on preparing learners for living wage careers within the WordPress ecosystem."
                         icon={<Brain className="w-8 h-8" />}
-                        bountyId="ai-leaders"
-                        onBountyClick={handleProjectClick}
+                        microGrantId="ai-leaders"
+                        onMicroGrantClick={handleProjectClick}
                     />
 
                     <ProjectCard
@@ -76,8 +76,8 @@ export const Projects: React.FC<{ onScrollToBounties: (projectId: string) => voi
                         description="An Open Source digital accessibility ecosystem, focused on making high quality accessibility tools available to everyone."
                         icon={<Accessibility className="w-8 h-8" />}
                         logoUrl="https://equalify.app/wp-content/uploads/2024/04/Equalify-Logo-768x237.png"
-                        bountyId="equalify"
-                        onBountyClick={handleProjectClick}
+                        microGrantId="equalify"
+                        onMicroGrantClick={handleProjectClick}
                     />
 
 
@@ -88,7 +88,7 @@ export const Projects: React.FC<{ onScrollToBounties: (projectId: string) => voi
                         onClick={() => handleProjectClick('all')}
                         className="inline-flex items-center px-6 py-3 rounded-full text-sm font-bold transition-colors bg-white text-gray-600 border border-gray-200 hover:border-gray-400"
                     >
-                        View All Bounties
+                        View All Micro-Grants
                     </button>
                 </div>
 

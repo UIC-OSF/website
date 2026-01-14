@@ -43,10 +43,10 @@ export const Hero: React.FC = () => {
                         className="flex flex-col sm:flex-row items-center justify-center gap-4"
                     >
                         <button
-                            onClick={() => scrollToSection('bounties-section')}
+                            onClick={() => scrollToSection('micro-grants-section')}
                             className="px-8 py-4 bg-uic-red text-white text-lg font-bold rounded-full hover:bg-red-700 transition-colors shadow-lg flex items-center"
                         >
-                            View Bounties
+                            View Micro-Grants
                             <ArrowRight className="ml-2 w-5 h-5" />
                         </button>
                         <button
