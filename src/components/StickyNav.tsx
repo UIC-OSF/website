@@ -12,6 +12,7 @@ const SECTION_LINKS: SectionLink[] = [
     { label: 'Micro-Grants', href: '#micro-grants-section' },
     { label: 'Partners', href: '#partners-section' },
     { label: 'Team', href: '#team-section' },
+    { label: 'Get Updates', href: '#newsletter-section' },
 ];
 
 export const StickyNav: React.FC = () => {
@@ -96,9 +97,11 @@ export const StickyNav: React.FC = () => {
                                     key={link.label}
                                     href={link.href}
                                     onClick={(e) => handleScrollTo(e, link.href)}
-                                    className={`text-sm md:text-base font-medium whitespace-nowrap transition-colors px-3 py-2 rounded-md ${isActive
-                                        ? 'text-uic-red bg-red-50'
-                                        : 'text-gray-700 hover:text-uic-red hover:bg-gray-50/50'
+                                    className={`text-sm md:text-base font-medium whitespace-nowrap transition-all px-3 py-2 rounded-md ${link.label === 'Get Updates'
+                                            ? 'ml-2 bg-uic-red text-white hover:bg-red-700 shadow-sm hover:shadow'
+                                            : isActive
+                                                ? 'text-uic-red bg-red-50'
+                                                : 'text-gray-700 hover:text-uic-red hover:bg-gray-50/50'
                                         }`}
                                     aria-current={isActive ? 'page' : undefined}
                                 >

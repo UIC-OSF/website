@@ -22,8 +22,8 @@ interface RepoConfig {
 const REPOS: RepoConfig[] = [
     { id: 'ai-leaders', owner: '1111philo', name: 'ai-leaders', displayName: 'AI Leaders' },
     { id: 'equalify', owner: 'EqualifyEverything', name: 'equalify', displayName: 'Equalify' },
-
 ];
+// const REPOS: RepoConfig[] = [];
 
 interface MicroGrantsProps {
     selectedProject?: string;
@@ -160,8 +160,23 @@ export const MicroGrants: React.FC<MicroGrantsProps> = ({ selectedProject = 'all
                         {error}
                     </div>
                 ) : filteredMicroGrants.length === 0 ? (
-                    <div className="text-center text-gray-500 py-12 bg-gray-50 rounded-xl border border-dashed border-gray-300">
-                        No open micro-grants found at the moment. Check back soon!
+                    <div className="text-center py-16 px-4 bg-gray-50 rounded-xl border border-dashed border-gray-300">
+                        <div className="max-w-md mx-auto">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-2">No open micro-grants at the moment</h3>
+                            <p className="text-gray-600 mb-6">
+                                We're currently reviewing new opportunities. Sign up for our newsletter to be the first to know when new micro-grants are available.
+                            </p>
+                            <a
+                                href="#newsletter-section"
+                                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-uic-blue hover:bg-blue-800 transition-colors shadow-sm hover:shadow"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById('newsletter-section')?.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                            >
+                                Get Notified of Future Grants
+                            </a>
+                        </div>
                     </div>
                 ) : (
                     <div className="grid gap-4" role="region" aria-live="polite" aria-label="Micro-grants list">

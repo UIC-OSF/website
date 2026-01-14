@@ -8,6 +8,7 @@ import { PartnershipSolicitation } from './components/PartnershipSolicitation';
 import { Team } from './components/Team';
 import { About } from './components/About';
 
+import { NewsletterSignup } from './components/NewsletterSignup';
 import { StickyNav } from './components/StickyNav';
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
       <div id="micro-grants-section" tabIndex={-1} className="scroll-mt-24"><MicroGrants selectedProject={selectedProject} onSelectProject={setSelectedProject} /></div>
       <div id="partners-section" tabIndex={-1} className="scroll-mt-24"><Partners /></div>
       <div id="team-section" tabIndex={-1} className="scroll-mt-24"><Team /></div>
+      <div id="newsletter-section" tabIndex={-1} className="scroll-mt-24"><NewsletterSignup /></div>
       <div id="partnership-section" tabIndex={-1} className="scroll-mt-24"><PartnershipSolicitation /></div>
     </Layout>
   );
