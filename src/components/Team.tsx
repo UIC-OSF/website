@@ -94,7 +94,7 @@ export const Team: React.FC = () => {
 
                     <TeamMember
                         name="Mary Hubbard"
-                        bio="Managing the WordPress + Automattic Partnership."
+                        bio="Overseeing WordPress project integration and qualification standards within the open source ecosystem."
                         imageUrl={maryImg}
                         linkedinUrl="https://www.linkedin.com/in/maryfhubbard/"
                         websiteUrl="https://mary.blog/"
