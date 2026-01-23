@@ -4,7 +4,7 @@ import { ArrowRight, Brain, Accessibility } from 'lucide-react';
 interface ProjectCardProps {
     title: string;
     subtitle?: string;
-    description: string;
+    description: React.ReactNode;
     icon: React.ReactNode;
     logoUrl?: string;
     microGrantId: string;
@@ -63,9 +63,9 @@ export const Projects: React.FC<{ onScrollToMicroGrants: (projectId: string) => 
 
 
                     <ProjectCard
-                        title="1111 AI Leaders"
+                        title="AI Leaders"
                         subtitle="WordPress Edition"
-                        description="Generative AI course material empowering learners to get jobs that require AI skills. Our first course, available in June, will focus on preparing learners for living wage careers within the WordPress ecosystem."
+                        description={<>Generative AI course material empowering learners to get jobs that require AI skills. Aligning with UIC's <span className="font-bold text-gray-900">Student Success</span> priority, our first course prepares learners for living wage careers within the WordPress ecosystem.</>}
                         icon={<Brain className="w-8 h-8" />}
                         microGrantId="ai-leaders"
                         onMicroGrantClick={handleProjectClick}
@@ -73,7 +73,7 @@ export const Projects: React.FC<{ onScrollToMicroGrants: (projectId: string) => 
 
                     <ProjectCard
                         title="Equalify"
-                        description="An Open Source digital accessibility ecosystem, focused on making high quality accessibility tools available to everyone."
+                        description={<>An Open Source digital accessibility ecosystem that meets UIC's <span className="font-bold text-gray-900">Community Engagement</span> priority by producing accessibility-first solutions that reduce barriers for people with disabilities and improve public-facing digital services.</>}
                         icon={<Accessibility className="w-8 h-8" />}
                         logoUrl="https://equalify.app/wp-content/uploads/2024/04/Equalify-Logo-768x237.png"
                         microGrantId="equalify"

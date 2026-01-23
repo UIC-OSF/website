@@ -9,7 +9,7 @@ This repository contains the source code for the UIC Tech Solutions Open Source 
 The UIC OSF website is a modern, responsive React application designed to highlight the fund's mission: supporting technology projects that work toward measurable public benefit.
 
 **Key Features:**
-*   **Dynamic Micro-Grant Aggregation:** Fetches and displays open issues tagged with "micro-grant" from GitHub repositories (1111, AI Leaders, Equalify).
+*   **Dynamic Micro-Grant Aggregation:** Fetches and displays open issues tagged with "micro-grant" from GitHub repositories (AI Leaders, Equalify).
 *   **Project Showcase:** Highlights supported Open Source projects.
 *   **Team Section:** Introduces key team members.
 *   **Partnership Solicitation:** Encourages organizations to partner with the fund.

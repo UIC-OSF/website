@@ -48,21 +48,43 @@ export const About: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="max-w-3xl mx-auto mb-20">
-                        <div className="bg-blue-50 border border-blue-100 rounded-xl p-8 text-center">
-                            <h3 className="text-2xl font-bold text-uic-blue mb-4">What is Open Source?</h3>
-                            <p className="text-gray-700 mb-6 text-lg leading-relaxed">
-                                Open Source means the code is publicly available under a license that lets anyone run, study, modify, and redistribute it.
-                            </p>
-                            <a
-                                href="https://ma.tt/2014/01/four-freedoms/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center text-uic-red font-bold hover:text-red-700 transition-colors"
-                            >
-                                Related Post by Matt Mullenweg
-                                <ArrowRight className="ml-2 w-4 h-4" />
-                            </a>
+                    <div className="max-w-6xl mx-auto">
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <div className="bg-blue-50 border border-blue-100 rounded-xl p-8 text-center flex flex-col justify-center h-full">
+                                <h3 className="text-2xl font-bold text-uic-blue mb-4">What is Open Source?</h3>
+                                <p className="text-gray-700 mb-6 text-lg leading-relaxed">
+                                    Open Source means the code is publicly available under a license that lets anyone run, study, modify, and redistribute it.
+                                </p>
+                                <div>
+                                    <a
+                                        href="https://ma.tt/2014/01/four-freedoms/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center text-uic-red font-bold hover:text-red-700 transition-colors"
+                                    >
+                                        Related Post by Matt Mullenweg
+                                        <ArrowRight className="ml-2 w-4 h-4" />
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div className="bg-blue-50 border border-blue-100 rounded-xl p-8 text-center flex flex-col justify-center h-full">
+                                <h3 className="text-2xl font-bold text-uic-blue mb-4">Aligning with UIC Priorities</h3>
+                                <p className="text-gray-700 mb-6 text-lg leading-relaxed">
+                                    We back open source projects that deliver campus-wide impact. Every project must be inline with UIC priorities.
+                                </p>
+                                <div>
+                                    <a
+                                        href="https://chancellor.uic.edu/about/priorities/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center text-uic-red font-bold hover:text-red-700 transition-colors"
+                                    >
+                                        Chancellor Miranda’s Priorities
+                                        <ArrowRight className="ml-2 w-4 h-4" />
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
