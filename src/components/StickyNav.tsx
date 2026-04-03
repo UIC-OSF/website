@@ -9,7 +9,6 @@ interface SectionLink {
 const SECTION_LINKS: SectionLink[] = [
     { label: 'About', href: '#about-section' },
     { label: 'Projects', href: '#projects-section' },
-    { label: 'Micro-Grants', href: '#micro-grants-section' },
     { label: 'Partners', href: '#partners-section' },
     { label: 'Team', href: '#team-section' },
     { label: 'Get Updates', href: '#newsletter-section' },

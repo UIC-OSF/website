@@ -24,7 +24,7 @@ export const NewsletterSignup: React.FC = () => {
                             </div>
                             <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
                             <p className="text-blue-100 text-lg leading-relaxed">
-                                Get the latest news about micro-grants, project updates, and opportunities to contribute to public good technology.
+                                Get the latest news about project updates and opportunities to contribute to public good technology.
                             </p>
                         </div>
 

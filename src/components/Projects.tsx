@@ -7,11 +7,10 @@ interface ProjectCardProps {
     description: React.ReactNode;
     icon: React.ReactNode;
     logoUrl?: string;
-    microGrantId: string;
-    onMicroGrantClick: (id: string) => void;
+    href: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, description, icon, logoUrl, microGrantId, onMicroGrantClick }) => (
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, description, icon, logoUrl, href }) => (
     <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
         <div className="mb-6 h-16 flex items-center justify-start">
             {logoUrl ? (
@@ -33,22 +32,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, description,
             {description}
         </p>
 
-        <button
-            onClick={() => onMicroGrantClick(microGrantId)}
+        <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full py-3 px-6 font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center group bg-gray-50 text-uic-blue hover:bg-uic-blue hover:text-white"
         >
-            {`${title} Micro-Grants`}
+            {`Visit ${title}`}
             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </button>
+        </a>
     </div>
 );
 
-export const Projects: React.FC<{ onScrollToMicroGrants: (projectId: string) => void }> = ({ onScrollToMicroGrants }) => {
-
-    const handleProjectClick = (projectId: string) => {
-        onScrollToMicroGrants(projectId);
-    };
-
+export const Projects: React.FC = () => {
     return (
         <section id="projects-section" className="py-20 bg-gray-50">
             <div className="container mx-auto px-4">
@@ -61,14 +57,12 @@ export const Projects: React.FC<{ onScrollToMicroGrants: (projectId: string) => 
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
 
-
                     <ProjectCard
                         title="AI Leaders"
                         subtitle="WordPress Edition"
                         description={<>Generative AI course material empowering learners to get jobs that require AI skills. Aligning with UIC's <span className="font-bold text-gray-900">Student Success</span> priority, our first course prepares learners for living wage careers within the WordPress ecosystem.</>}
                         icon={<Brain className="w-8 h-8" />}
-                        microGrantId="ai-leaders"
-                        onMicroGrantClick={handleProjectClick}
+                        href="https://ai-leaders.org/"
                     />
 
                     <ProjectCard
@@ -76,20 +70,9 @@ export const Projects: React.FC<{ onScrollToMicroGrants: (projectId: string) => 
                         description={<>An Open Source digital accessibility ecosystem that meets UIC's <span className="font-bold text-gray-900">Community Engagement</span> priority by producing accessibility-first solutions that reduce barriers for people with disabilities and improve public-facing digital services.</>}
                         icon={<Accessibility className="w-8 h-8" />}
                         logoUrl="https://equalify.app/wp-content/uploads/2024/04/Equalify-Logo-768x237.png"
-                        microGrantId="equalify"
-                        onMicroGrantClick={handleProjectClick}
+                        href="https://equalify.uic.edu/"
                     />
 
-
-                </div>
-
-                <div className="text-center">
-                    <button
-                        onClick={() => handleProjectClick('all')}
-                        className="inline-flex items-center px-6 py-3 rounded-full text-sm font-bold transition-colors bg-white text-gray-600 border border-gray-200 hover:border-gray-400"
-                    >
-                        View All Micro-Grants
-                    </button>
                 </div>
 
             </div>
