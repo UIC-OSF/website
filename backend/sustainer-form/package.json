@@ -1,0 +1,15 @@
+{
+  "name": "osf-sustainer-form",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lambda handler that emails sustainer applications from osf.it.uic.edu",
+  "type": "module",
+  "main": "index.mjs",
+  "scripts": {
+    "package": "rm -rf build function.zip && mkdir -p build && cp index.mjs package.json build/ && npm install --omit=dev --prefix build && cd build && zip -qr ../function.zip . && cd .. && rm -rf build",
+    "deploy": "npm run package && aws lambda update-function-code --region us-east-2 --function-name osf-sustainer-form --zip-file fileb://function.zip --no-cli-pager"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sesv2": "^3.734.0"
+  }
+}
