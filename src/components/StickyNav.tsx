@@ -6,12 +6,15 @@ interface SectionLink {
     href: string;
 }
 
+const CTA_LABEL = 'Become a Sustainer';
+
 const SECTION_LINKS: SectionLink[] = [
-    { label: 'About', href: '#about-section' },
     { label: 'Projects', href: '#projects-section' },
-    { label: 'Partners', href: '#partners-section' },
+    { label: 'Benefits', href: '#benefits-section' },
+    { label: "What's Asked", href: '#ask-section' },
+    { label: 'About', href: '#about-section' },
     { label: 'Team', href: '#team-section' },
-    { label: 'Get Updates', href: '#newsletter-section' },
+    { label: CTA_LABEL, href: '#sustainer-section' },
 ];
 
 export const StickyNav: React.FC = () => {
@@ -96,7 +99,7 @@ export const StickyNav: React.FC = () => {
                                     key={link.label}
                                     href={link.href}
                                     onClick={(e) => handleScrollTo(e, link.href)}
-                                    className={`text-sm md:text-base font-medium whitespace-nowrap transition-all px-3 py-2 rounded-md ${link.label === 'Get Updates'
+                                    className={`text-sm md:text-base font-medium whitespace-nowrap transition-all px-3 py-2 rounded-md ${link.label === CTA_LABEL
                                             ? 'ml-2 bg-uic-red text-white hover:bg-red-700 shadow-sm hover:shadow'
                                             : isActive
                                                 ? 'text-uic-red bg-red-50'

@@ -1,19 +1,27 @@
 # UIC Tech Solutions Open Source Fund Website
 
-This repository contains the source code for the UIC Tech Solutions Open Source Fund (OSF) website. The website serves to inform visitors about the fund, aggregate open micro-grants from supported projects, and solicit partnerships.
+This repository contains the source code for the UIC Tech Solutions Open Source Fund (OSF) website. The site has one job: recruit universities as **sustainers** of the fund's Open Source projects (Equalify, AI Leaders, and Plato).
 
 **Live Site:** [https://uic-osf.github.io/website/](https://uic-osf.github.io/website/)
 
 ## 🚀 Overview
 
-The UIC OSF website is a modern, responsive React application designed to highlight the fund's mission: supporting technology projects that work toward measurable public benefit.
+The UIC OSF website is a modern, responsive React application built to convert one audience — university CIOs — into sustainers. Its headline promise: supporting technology projects that work toward measurable benefit for UIC, University partners, and the public.
+
+**Page flow (`src/App.tsx`):** Hero → Stats → Projects → Sustainer Benefits → What's Asked → About → Team → Sustainer Application → Get in Touch → Newsletter.
 
 **Key Features:**
-*   **Dynamic Micro-Grant Aggregation:** Fetches and displays open issues tagged with "micro-grant" from GitHub repositories (AI Leaders, Equalify).
-*   **Project Showcase:** Highlights supported Open Source projects.
-*   **Team Section:** Introduces key team members.
-*   **Partnership Solicitation:** Encourages organizations to partner with the fund.
-*   **Accessibility:** Built with accessibility in mind, using semantic HTML and high-contrast colors.
+*   **Sustainer Application:** The conversion point. Modeled on [equalify.uic.edu/sustainers](https://equalify.uic.edu/sustainers), with an added checkbox group so an institution can sustain one, two, or all three projects.
+*   **Project Showcase:** Equalify, AI Leaders, and Plato.
+*   **Team Section:** Introduces the people a sustainer's designee will work with.
+*   **Accessibility:** Built with accessibility in mind, using semantic HTML, fieldsets/legends, and high-contrast colors.
+
+### Sustainer form submission
+
+`SustainerForm.tsx` POSTs the application as JSON to an AWS Lambda Function URL, which validates it
+and emails the fund leads via SES. The handler source, deploy command, and instructions for changing
+the recipients live in [`backend/sustainer-form/`](backend/sustainer-form/README.md). If the request
+fails, the form falls back to a `mailto:osf@uic.edu` draft so an application is never lost.
 
 ## 🛠️ Tech Stack
 

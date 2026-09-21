@@ -1,31 +1,25 @@
 import React from 'react';
-import { ArrowRight, Brain, Accessibility } from 'lucide-react';
+import { ArrowRight, Brain } from 'lucide-react';
+import platoLogo from '../assets/plato-square.png';
+import equalifyLogo from '../assets/equalify-square.png';
 
 interface ProjectCardProps {
     title: string;
-    subtitle?: string;
     description: React.ReactNode;
     icon: React.ReactNode;
-    logoUrl?: string;
     href: string;
+    ctaLabel: string;
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, description, icon, logoUrl, href }) => (
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, icon, href, ctaLabel }) => (
     <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
         <div className="mb-6 h-16 flex items-center justify-start">
-            {logoUrl ? (
-                <img src={logoUrl} alt={`${title} Logo`} className="h-full object-contain max-w-[200px]" />
-            ) : (
-                <div className="flex items-center space-x-3">
-                    <div className="p-3 bg-uic-blue/10 rounded-lg text-uic-blue">
-                        {icon}
-                    </div>
-                    <div>
-                        <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
-                        {subtitle && <p className="text-sm font-semibold text-uic-red uppercase tracking-wide">{subtitle}</p>}
-                    </div>
+            <div className="flex items-center space-x-3">
+                <div className="p-3 bg-uic-blue/10 rounded-lg text-uic-blue">
+                    {icon}
                 </div>
-            )}
+                <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
+            </div>
         </div>
 
         <p className="text-gray-600 mb-8 flex-grow leading-relaxed">
@@ -38,7 +32,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, description,
             rel="noopener noreferrer"
             className="w-full py-3 px-6 font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center group bg-gray-50 text-uic-blue hover:bg-uic-blue hover:text-white"
         >
-            {`Visit ${title}`}
+            {ctaLabel}
             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </a>
     </div>
@@ -46,31 +40,39 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, subtitle, description,
 
 export const Projects: React.FC = () => {
     return (
-        <section id="projects-section" className="py-20 bg-gray-50">
+        <section className="py-20 bg-gray-50">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">Supported Projects</h2>
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">What You Would Sustain</h2>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                        We support Open Source initiatives that produce measurable benefit for UIC and our society.
+                        Three platforms, in production today.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
-
-                    <ProjectCard
-                        title="AI Leaders"
-                        subtitle="WordPress Edition"
-                        description={<>Generative AI course material empowering learners to get jobs that require AI skills. Aligning with UIC's <span className="font-bold text-gray-900">Student Success</span> priority, our first course prepares learners for living wage careers within the WordPress ecosystem.</>}
-                        icon={<Brain className="w-8 h-8" />}
-                        href="https://ai-leaders.org/"
-                    />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
 
                     <ProjectCard
                         title="Equalify"
-                        description={<>An Open Source digital accessibility ecosystem that meets UIC's <span className="font-bold text-gray-900">Community Engagement</span> priority by producing accessibility-first solutions that reduce barriers for people with disabilities and improve public-facing digital services.</>}
-                        icon={<Accessibility className="w-8 h-8" />}
-                        logoUrl="https://equalify.app/wp-content/uploads/2024/04/Equalify-Logo-768x237.png"
+                        description={<>Scans your sites for WCAG issues, tracks remediation, and converts PDFs to accessible HTML for as little as <span className="font-bold text-gray-900">$0.02 per document</span>.</>}
+                        icon={<img src={equalifyLogo} alt="" className="w-8 h-8 object-contain rounded" />}
                         href="https://equalify.uic.edu/"
+                        ctaLabel="Visit Equalify"
+                    />
+
+                    <ProjectCard
+                        title="AI Leaders"
+                        description={<>Generative AI course material that prepares learners for jobs requiring AI skills. Run it and adapt it <span className="font-bold text-gray-900">without a licensing agreement</span>.</>}
+                        icon={<Brain className="w-8 h-8" />}
+                        href="https://ai-leaders.org/"
+                        ctaLabel="Visit AI Leaders"
+                    />
+
+                    <ProjectCard
+                        title="Plato"
+                        description={<>An Adaptive Learning Platform — made for humans, responsibly using AI. 20-minute lessons with an AI coach that evaluates work and tracks <span className="font-bold text-gray-900">mastery</span>.</>}
+                        icon={<img src={platoLogo} alt="" className="w-8 h-8 object-contain" />}
+                        href="https://github.com/1111philo/plato"
+                        ctaLabel="Plato on GitHub"
                     />
 
                 </div>

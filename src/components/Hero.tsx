@@ -33,7 +33,7 @@ export const Hero: React.FC = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="text-xl md:text-3xl text-gray-700 font-light leading-relaxed mb-10"
                     >
-                        Support technology projects that work toward <span className="font-semibold text-uic-blue">measurable benefit for UIC and the public</span>.
+                        Support technology projects that work toward <span className="font-semibold text-uic-blue">measurable benefit for UIC, University partners, and the public</span>.
                     </motion.p>
 
                     <motion.div
@@ -43,18 +43,18 @@ export const Hero: React.FC = () => {
                         className="flex flex-col sm:flex-row items-center justify-center gap-4"
                     >
                         <button
-                            onClick={() => scrollToSection('projects-section')}
+                            onClick={() => scrollToSection('sustainer-section')}
                             className="px-8 py-4 bg-uic-red text-white text-lg font-bold rounded-full hover:bg-red-700 transition-colors shadow-lg flex items-center"
                         >
-                            View Projects
-                            <ArrowRight className="ml-2 w-5 h-5" />
+                            Become a Sustainer
+                            <Handshake className="ml-2 w-5 h-5" />
                         </button>
                         <button
-                            onClick={() => scrollToSection('partnership-section')}
+                            onClick={() => scrollToSection('projects-section')}
                             className="px-8 py-4 bg-white text-uic-blue text-lg font-bold rounded-full hover:bg-gray-50 transition-colors shadow-lg border border-gray-200 flex items-center"
                         >
-                            Partner with Us
-                            <Handshake className="ml-2 w-5 h-5" />
+                            See the Projects
+                            <ArrowRight className="ml-2 w-5 h-5" />
                         </button>
                     </motion.div>
                 </div>
