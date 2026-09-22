@@ -43,7 +43,7 @@ export const Projects: React.FC = () => {
         <section className="py-20 bg-gray-50">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">What You Would Sustain</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">Current Projects</h2>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
                         Three platforms, in production today.
                     </p>

@@ -14,8 +14,8 @@ const STATS: Stat[] = [
     },
     {
         value: '3',
-        label: 'Projects to sustain',
-        detail: 'Equalify, AI Leaders, and Plato.',
+        label: 'Projects in production',
+        detail: 'Better Accessibility, Adaptive Learning, and AI Literacy.',
     },
     {
         value: '100 hrs',

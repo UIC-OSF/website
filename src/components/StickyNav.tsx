@@ -9,10 +9,10 @@ interface SectionLink {
 const CTA_LABEL = 'Become a Sustainer';
 
 const SECTION_LINKS: SectionLink[] = [
+    { label: 'About', href: '#about-section' },
     { label: 'Projects', href: '#projects-section' },
     { label: 'Benefits', href: '#benefits-section' },
     { label: "What's Asked", href: '#ask-section' },
-    { label: 'About', href: '#about-section' },
     { label: 'Team', href: '#team-section' },
     { label: CTA_LABEL, href: '#sustainer-section' },
 ];

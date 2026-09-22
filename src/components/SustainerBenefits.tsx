@@ -13,14 +13,17 @@ const BENEFITS: Benefit[] = [
         icon: PiggyBank,
         points: [
             <>Your staff hours replace vendor invoices, and the work stays yours.</>,
-            <>Equalify remediates PDFs for as little as <span className="font-semibold text-uic-blue">$0.02 per document</span>.</>,
+            <>
+                Leverage cost savings &mdash; Equalify PDF remediation can cost <span className="font-semibold text-uic-blue">$0</span> with our tech.
+                <span className="block mt-1 text-sm text-gray-500">For example, Equalify remediates PDFs for as little as $0.02 per document.</span>
+            </>,
         ],
     },
     {
         title: 'Direct Support',
         icon: Wrench,
         points: [
-            <>Monthly roadmap meetings and direct access to the engineers — not a ticket queue.</>,
+            <>Monthly roadmap meetings with direct access to maintainers.</>,
             <>Elevate roadmap items to accelerate the features your campus needs.</>,
         ],
     },
@@ -39,7 +42,7 @@ export const SustainerBenefits: React.FC = () => {
         <section className="py-20 bg-white border-t border-gray-100">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">What You Get</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">Sustainer Benefits</h2>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
