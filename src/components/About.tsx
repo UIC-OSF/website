@@ -25,13 +25,14 @@ export const About: React.FC = () => {
 
                     <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
                         <div className="order-2 lg:order-1">
-                            <h2 className="text-4xl md:text-5xl font-bold text-uic-blue mb-8 leading-tight">
-                                UIC Runs{' '}
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-uic-red to-orange-600">the Fund</span>
+                            <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-8 leading-tight">
+                                Benefit from{' '}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-uic-red to-orange-600">UIC Maintained</span>{' '}
+                                Tech
                             </h2>
                             <div className="prose prose-lg prose-blue text-gray-600 mb-8 leading-relaxed">
                                 <p className="text-xl font-light text-gray-800">
-                                    The fund is staffed by UIC, with full-time engineers maintaining every project it backs.
+                                    The fund is staffed by UIC, with full-time engineers maintaining every project we back.
                                     Each one has to deliver measurable benefit for the{' '}
                                     <span className="font-semibold text-uic-blue">institutions that run it</span> and for the{' '}
                                     <span className="font-semibold text-uic-blue">public</span> — or the fund stops backing it.
@@ -80,7 +81,7 @@ export const About: React.FC = () => {
                             </div>
 
                             <div className="bg-blue-50 border border-blue-100 rounded-xl p-8 text-center flex flex-col justify-center h-full">
-                                <h3 className="text-2xl font-bold text-uic-blue mb-4">What Gets Funded</h3>
+                                <h3 className="text-2xl font-bold text-uic-blue mb-4">What Gets Maintained</h3>
                                 <p className="text-gray-700 mb-6 text-lg leading-relaxed">
                                     Projects that solve a problem more than one university actually has, ship to production, and
                                     stay free of per-seat licensing.

@@ -16,10 +16,10 @@ function App() {
       <Hero />
       <StickyNav />
       <Stats />
+      <div id="about-section" tabIndex={-1} className="scroll-mt-24"><About /></div>
       <div id="projects-section" tabIndex={-1} className="scroll-mt-24"><Projects /></div>
       <div id="benefits-section" tabIndex={-1} className="scroll-mt-24"><SustainerBenefits /></div>
       <div id="ask-section" tabIndex={-1} className="scroll-mt-24"><WhatWeAsk /></div>
-      <div id="about-section" tabIndex={-1} className="scroll-mt-24"><About /></div>
       <div id="team-section" tabIndex={-1} className="scroll-mt-24"><Team /></div>
       <div id="sustainer-section" tabIndex={-1} className="scroll-mt-24"><SustainerForm /></div>
       <div id="newsletter-section" tabIndex={-1} className="scroll-mt-24"><NewsletterSignup /></div>
