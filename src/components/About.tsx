@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
 import { ArrowRight, X } from 'lucide-react';
 import infoImage from '../assets/info.jpg';
+import mattRileyImg from '../assets/matt-riley.jpg';
 
 
 export const About: React.FC = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const scrollToProjects = () => {
-        const element = document.getElementById('projects-section');
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-            element.focus();
-        }
-    };
 
     return (
         <section className="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
@@ -39,13 +32,25 @@ export const About: React.FC = () => {
                                 </p>
                             </div>
 
-                            <button
-                                onClick={scrollToProjects}
-                                className="inline-flex items-center text-uic-red font-semibold hover:text-red-700 transition-colors"
-                            >
-                                See what the fund supports
-                                <ArrowRight className="ml-2 w-4 h-4" />
-                            </button>
+                            <figure className="border-l-4 border-uic-red pl-6">
+                                <blockquote className="text-lg md:text-xl text-gray-800 leading-relaxed">
+                                    <p>
+                                        “The TS Open Source Fund carries out UIC’s mission of providing the broadest access
+                                        to the highest levels of excellence.”
+                                    </p>
+                                </blockquote>
+                                <figcaption className="mt-4 flex items-center gap-4">
+                                    <img
+                                        src={mattRileyImg}
+                                        alt=""
+                                        className="w-14 h-14 rounded-full object-cover border-2 border-gray-50 shadow-inner"
+                                    />
+                                    <span>
+                                        <span className="block font-semibold text-uic-blue">Matt Riley<span className="sr-only">,</span></span>
+                                        <span className="block text-gray-600">CIO, University of Illinois Chicago</span>
+                                    </span>
+                                </figcaption>
+                            </figure>
                         </div>
 
                         <div className="order-1 lg:order-2 flex justify-center">
