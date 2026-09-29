@@ -44,7 +44,6 @@ interface FormState {
     designeeEmail: string;
     designeeDepartment: string;
     notes: string;
-    agreeNameUse: boolean;
     attest: boolean;
 }
 
@@ -60,7 +59,6 @@ const EMPTY_FORM: FormState = {
     designeeEmail: '',
     designeeDepartment: '',
     notes: '',
-    agreeNameUse: false,
     attest: false,
 };
 
@@ -83,8 +81,7 @@ const buildApplicationText = (form: FormState): string =>
         '',
         `Notes: ${form.notes || '—'}`,
         '',
-        'Agreements',
-        '  Agrees to the use of the institution name as described on the application: yes',
+        'Authorization',
         '  Confirms the approving official is authorized to commit resources and that this submission serves as their signature: yes',
     ].join('\n');
 
@@ -353,23 +350,8 @@ export const SustainerForm: React.FC = () => {
                             </div>
 
                             <fieldset>
-                                <legend className="text-xl font-bold text-uic-blue mb-2">Use of Institution Name</legend>
-                                <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-                                    UIC will name your institution in project press releases, on project websites, and in project
-                                    emails. You review press releases at the monthly roadmap meeting before they publish.
-                                </p>
+                                <legend className="text-xl font-bold text-uic-blue mb-4">Authorization</legend>
                                 <div className="space-y-3">
-                                    <label className="flex items-start text-gray-700 cursor-pointer">
-                                        <input
-                                            type="checkbox"
-                                            name="agree_name_use"
-                                            required
-                                            checked={form.agreeNameUse}
-                                            onChange={(e) => update('agreeNameUse', e.target.checked)}
-                                            className="mt-1 mr-3 w-4 h-4 accent-uic-blue flex-shrink-0"
-                                        />
-                                        <span>The institution agrees to this use of its name. <span className="text-uic-red">*</span></span>
-                                    </label>
                                     <label className="flex items-start text-gray-700 cursor-pointer">
                                         <input
                                             type="checkbox"
