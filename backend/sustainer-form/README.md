@@ -42,7 +42,7 @@ curl -X POST https://aclezaiz3jtumwwg4b2f4f6inm0rdvmk.lambda-url.us-east-2.on.aw
   -d '{"institution":"TEST - ignore","projects":["Plato"],
        "commitment":"100 staff hours toward feature development and monthly planning meetings",
        "officialName":"T","officialTitle":"CIO","officialEmail":"you@uic.edu",
-       "designeeName":"T","designeeEmail":"you@uic.edu","agreeNameUse":true,"attest":true}'
+       "designeeName":"T","designeeEmail":"you@uic.edu","attest":true}'
 # => {"ok":true}
 ```
 

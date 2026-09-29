@@ -56,7 +56,6 @@ function validate(input) {
         designeeEmail: str(input.designeeEmail, 200),
         designeeDepartment: str(input.designeeDepartment, 100),
         notes: str(input.notes, 1000),
-        agreeNameUse: input.agreeNameUse === true,
         attest: input.attest === true,
     };
 
@@ -68,7 +67,6 @@ function validate(input) {
     if (!EMAIL_RE.test(application.officialEmail)) errors.push("Approving official's email is invalid.");
     if (!application.designeeName) errors.push("Designee's name is required.");
     if (!EMAIL_RE.test(application.designeeEmail)) errors.push("Designee's email is invalid.");
-    if (!application.agreeNameUse) errors.push('Agreement to the use of the institution name is required.');
     if (!application.attest) errors.push('Confirmation of signing authority is required.');
 
     return { errors, application };
@@ -96,8 +94,7 @@ const body = (a, meta) =>
         'NOTES',
         `  ${a.notes || '—'}`,
         '',
-        'AGREEMENTS',
-        '  [x] Agrees to the use of its name in press releases, on project websites, and in project emails.',
+        'AUTHORIZATION',
         '  [x] Confirms the approving official is authorized to commit institutional resources and that',
         '      this submission serves as their signature.',
         '',
