@@ -13,14 +13,14 @@ const STATS: Stat[] = [
         detail: "It's Open Source. No per-seat pricing.",
     },
     {
-        value: '3',
-        label: 'Projects in production',
-        detail: 'Better Accessibility, Adaptive Learning, and AI Literacy.',
+        value: '6',
+        label: 'Repositories in production',
+        detail: 'Across the Equalify and AI Leaders Project Committees.',
     },
     {
         value: '100 hrs',
         label: 'Or $10,000 a year',
-        detail: "About one workday a month. That's the whole ask.",
+        detail: "About one workday a month. That's the minimum pledge.",
     },
 ];
 

@@ -25,10 +25,18 @@ export const About: React.FC = () => {
                             </h2>
                             <div className="prose prose-lg prose-blue text-gray-600 mb-8 leading-relaxed">
                                 <p className="text-xl font-light text-gray-800">
-                                    The fund is staffed by UIC, with full-time engineers maintaining every project we back.
-                                    Each one has to deliver measurable benefit for the{' '}
-                                    <span className="font-semibold text-uic-blue">institutions that run it</span> and for the{' '}
-                                    <span className="font-semibold text-uic-blue">public</span> — or the fund stops backing it.
+                                    The UIC Technology Solutions Open Source Fund is a{' '}
+                                    <span className="font-semibold text-uic-blue">collaborative governance body</span> that
+                                    advances innovation in select Open Source projects. Every project it supports has to
+                                    deliver measurable benefit for{' '}
+                                    <span className="font-semibold text-uic-blue">UIC</span> and for the{' '}
+                                    <span className="font-semibold text-uic-blue">public</span>.
+                                </p>
+                                <p className="text-lg text-gray-600">
+                                    Sustainers join self-governing Project Committees, which set their own membership,
+                                    meeting, and voting practices and can pass resolutions about their project. UIC
+                                    retains authority over what it has not delegated — University funds, contracts, legal
+                                    compliance, security, UIC-controlled systems, trademarks, and official communications.
                                 </p>
                             </div>
 
@@ -69,8 +77,8 @@ export const About: React.FC = () => {
                             <div className="bg-blue-50 border border-blue-100 rounded-xl p-8 text-center flex flex-col justify-center h-full">
                                 <h3 className="text-2xl font-bold text-uic-blue mb-4">What is Open Source?</h3>
                                 <p className="text-gray-700 mb-6 text-lg leading-relaxed">
-                                    The code is public, under a license that lets anyone run, study, modify, and redistribute it.
-                                    No vendor can revoke your access.
+                                    The code is public, under a license that lets anyone use, study, modify, and distribute it.
+                                    Access to every OSF project is inherent in that license — no vendor can revoke it.
                                 </p>
                                 <div>
                                     <a
@@ -88,8 +96,8 @@ export const About: React.FC = () => {
                             <div className="bg-blue-50 border border-blue-100 rounded-xl p-8 text-center flex flex-col justify-center h-full">
                                 <h3 className="text-2xl font-bold text-uic-blue mb-4">What Gets Maintained</h3>
                                 <p className="text-gray-700 mb-6 text-lg leading-relaxed">
-                                    Projects that solve a problem more than one university actually has, ship to production, and
-                                    stay free of per-seat licensing.
+                                    Projects that solve a problem more than one university actually has, ship to production,
+                                    and keep their OSF-supported source code public under an OSI-approved license.
                                 </p>
                                 <div>
                                     <a

@@ -20,9 +20,13 @@ const BENEFITS: Benefit[] = [
         ],
     },
     {
-        title: 'Direct Support',
+        title: 'A Vote on Direction',
         icon: Wrench,
         points: [
+            <>
+                A seat on the Project Committee, which is self-governing and can vote on collective action and pass
+                resolutions about its project.
+            </>,
             <>Monthly roadmap meetings with direct access to maintainers.</>,
             <>Elevate roadmap items to accelerate the features your campus needs.</>,
         ],
