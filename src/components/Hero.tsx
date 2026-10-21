@@ -46,7 +46,7 @@ export const Hero: React.FC = () => {
                             onClick={() => scrollToSection('sustainer-section')}
                             className="px-8 py-4 bg-uic-red text-white text-lg font-bold rounded-full hover:bg-red-700 transition-colors shadow-lg flex items-center"
                         >
-                            Become a Sustainer
+                            Apply to Become a Sustainer
                             <Handshake className="ml-2 w-5 h-5" />
                         </button>
                         <button

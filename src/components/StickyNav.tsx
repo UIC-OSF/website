@@ -6,7 +6,7 @@ interface SectionLink {
     href: string;
 }
 
-const CTA_LABEL = 'Become a Sustainer';
+const CTA_LABEL = 'Apply to Become a Sustainer';
 
 const SECTION_LINKS: SectionLink[] = [
     { label: 'About', href: '#about-section' },

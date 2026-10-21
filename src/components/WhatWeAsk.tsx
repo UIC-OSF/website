@@ -16,7 +16,7 @@ export const WhatWeAsk: React.FC = () => {
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">What's Asked</h2>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                        One commitment, renewed annually. Nothing else.
+                        One pledge, renewed annually. Nothing else.
                     </p>
                 </div>
 
@@ -28,13 +28,20 @@ export const WhatWeAsk: React.FC = () => {
                         <h3 className="text-2xl font-bold text-gray-900 mb-4">100 Staff Hours or $10,000 Annually</h3>
                         <ul className="space-y-3 text-gray-600 leading-relaxed">
                             <li>
-                                <span className="font-semibold text-uic-blue">100 staff hours a year</span> — about one workday
-                                a month — toward development and planning meetings.
+                                At least <span className="font-semibold text-uic-blue">100 staff hours a year</span> — about
+                                one workday a month — toward OSF-related work: developing project features, attending
+                                planning meetings, or running promotional campaigns.
                             </li>
                             <li>
-                                Can't commit staff? Donate <span className="font-semibold text-uic-blue">$10,000</span> to the fund instead.
+                                Can't commit staff? Donate <span className="font-semibold text-uic-blue">$10,000</span> to
+                                OSF instead, which funds operations and development.
                             </li>
-                            <li>One commitment covers every project you select.</li>
+                            <li>One pledge covers every Project Committee you join.</li>
+                            <li>
+                                This is a minimum. Each Project Committee may add its own pledge requirements, and you may
+                                be asked to <span className="font-semibold text-uic-blue">self-report</span> the hours and
+                                tasks you worked on.
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -44,7 +51,7 @@ export const WhatWeAsk: React.FC = () => {
                         onClick={scrollToForm}
                         className="inline-flex items-center px-8 py-4 bg-uic-red text-white text-lg font-bold rounded-full hover:bg-red-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                     >
-                        Become a Sustainer
+                        Apply to Become a Sustainer
                         <ArrowRight className="ml-2 w-5 h-5" />
                     </button>
                 </div>

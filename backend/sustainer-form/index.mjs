@@ -19,11 +19,14 @@ const NOTIFY = (process.env.SUSTAINER_NOTIFY_EMAIL || 'b3b@uic.edu,stefinp@uic.e
 // can be traced to a real delivery status instead of a guess.
 const CONFIG_SET = process.env.SES_CONFIGURATION_SET || 'osf-sustainer-form';
 
-const ALLOWED_PROJECTS = ['Equalify', 'AI Leaders', 'Plato'];
+// OSF Project Committees. Plato is a repository the AI Leaders committee manages,
+// not a committee of its own.
+const ALLOWED_PROJECTS = ['Equalify', 'AI Leaders'];
 const ALLOWED_COMMITMENTS = [
-    '100 staff hours toward feature development and monthly planning meetings',
+    '100 staff hours per year toward OSF-related work',
     '$10,000 to the UIC Technology Solutions Open Source Fund',
 ];
+const ALLOWED_APPLICANT_TYPES = ['institution', 'individual'];
 
 const MAX_BODY_BYTES = 20_000;
 const EMAIL_RE = /^[^@\s]+@[^@\s.]+\.[^@\s]+$/;
@@ -42,7 +45,12 @@ function validate(input) {
     // Honeypot: real applicants never see this field.
     if (str(input.website, 200)) return { errors: ['rejected'] };
 
+    const applicantType = ALLOWED_APPLICANT_TYPES.includes(input.applicantType)
+        ? input.applicantType
+        : '';
+
     const application = {
+        applicantType,
         institution: str(input.institution, 200),
         projects: Array.isArray(input.projects)
             ? input.projects.filter((p) => ALLOWED_PROJECTS.includes(p))
@@ -59,14 +67,21 @@ function validate(input) {
         attest: input.attest === true,
     };
 
-    if (!application.institution) errors.push('Institution is required.');
-    if (application.projects.length === 0) errors.push('Select at least one project to sustain.');
-    if (!ALLOWED_COMMITMENTS.includes(application.commitment)) errors.push('Select an annual commitment.');
-    if (!application.officialName) errors.push("Approving official's name is required.");
-    if (!application.officialTitle) errors.push("Approving official's title is required.");
-    if (!EMAIL_RE.test(application.officialEmail)) errors.push("Approving official's email is invalid.");
-    if (!application.designeeName) errors.push("Designee's name is required.");
-    if (!EMAIL_RE.test(application.designeeEmail)) errors.push("Designee's email is invalid.");
+    if (!applicantType) errors.push('Select whether you are applying as an institution or an individual.');
+    if (application.projects.length === 0) errors.push('Select at least one Project Committee to join.');
+    if (!ALLOWED_COMMITMENTS.includes(application.commitment)) errors.push('Select an annual pledge.');
+
+    // An individual applicant is their own approver, so only institutions
+    // supply an approving official.
+    if (applicantType === 'institution') {
+        if (!application.institution) errors.push('Institution is required.');
+        if (!application.officialName) errors.push("Approving official's name is required.");
+        if (!application.officialTitle) errors.push("Approving official's title is required.");
+        if (!EMAIL_RE.test(application.officialEmail)) errors.push("Approving official's email is invalid.");
+    }
+
+    if (!application.designeeName) errors.push('Primary contact name is required.');
+    if (!EMAIL_RE.test(application.designeeEmail)) errors.push('Primary contact email is invalid.');
     if (!application.attest) errors.push('Confirmation of signing authority is required.');
 
     return { errors, application };
@@ -75,17 +90,23 @@ function validate(input) {
 const body = (a, meta) =>
     [
         'A new sustainer application was submitted at osf.it.uic.edu.',
+        'Approve it to invite the primary contact onto the Project Committees below.',
         '',
-        `Institution:          ${a.institution}`,
-        `Projects to sustain:  ${a.projects.join(', ')}`,
-        `Annual commitment:    ${a.commitment}`,
+        `Applying as:         ${a.applicantType === 'individual' ? 'An individual' : 'An institution'}`,
+        ...(a.institution ? [`Institution:         ${a.institution}`] : []),
+        `Project Committees:  ${a.projects.join(', ')}`,
+        `Annual pledge:       ${a.commitment}`,
         '',
-        'APPROVING OFFICIAL',
-        `  Name:       ${a.officialName}`,
-        `  Title:      ${a.officialTitle}`,
-        `  Email:      ${a.officialEmail}`,
-        '',
-        'DESIGNEE',
+        ...(a.applicantType === 'institution'
+            ? [
+                  'APPROVING OFFICIAL (secondary contact, may commit institutional resources)',
+                  `  Name:       ${a.officialName}`,
+                  `  Title:      ${a.officialTitle}`,
+                  `  Email:      ${a.officialEmail}`,
+                  '',
+              ]
+            : []),
+        'SUSTAINER DESIGNEE (primary contact)',
         `  Name:       ${a.designeeName}`,
         `  Title:      ${a.designeeTitle || '—'}`,
         `  Email:      ${a.designeeEmail}`,
@@ -95,15 +116,17 @@ const body = (a, meta) =>
         `  ${a.notes || '—'}`,
         '',
         'AUTHORIZATION',
-        '  [x] Confirms the approving official is authorized to commit institutional resources and that',
-        '      this submission serves as their signature.',
+        a.applicantType === 'individual'
+            ? '  [x] Confirms they can commit the pledged resources and that this submission serves as\n      their signature.'
+            : '  [x] Confirms the approving official is authorized to commit institutional resources and that\n      this submission serves as their signature.',
         '',
         '—',
         `Submitted: ${meta.submittedAt}`,
         `Source IP: ${meta.sourceIp}`,
         `Term:      One year from submission, renewable by mutual agreement.`,
+        `Pledge:    Sustainers may be asked to self-report hours worked against this pledge.`,
         '',
-        'Reply to this email to reach the approving official directly.',
+        'Reply to this email to reach the applicant directly.',
     ].join('\n');
 
 export const handler = async (event) => {
@@ -130,18 +153,23 @@ export const handler = async (event) => {
         sourceIp: event?.requestContext?.http?.sourceIp || 'unknown',
     };
 
+    // Individual applicants have no institution or approving official, so the
+    // primary contact stands in for both.
+    const applicantLabel = application.institution || application.designeeName;
+    const replyTo = application.officialEmail || application.designeeEmail;
+
     let messageId;
     try {
         const sent = await ses.send(
             new SendEmailCommand({
                 FromEmailAddress: EMAIL_FROM,
                 Destination: { ToAddresses: NOTIFY },
-                ReplyToAddresses: [application.officialEmail],
+                ReplyToAddresses: [replyTo],
                 ConfigurationSetName: CONFIG_SET,
                 Content: {
                     Simple: {
                         Subject: {
-                            Data: `Sustainer Application — ${application.institution} (${application.projects.join(', ')})`,
+                            Data: `Sustainer Application — ${applicantLabel} (${application.projects.join(', ')})`,
                             Charset: 'UTF-8',
                         },
                         Body: { Text: { Data: body(application, meta), Charset: 'UTF-8' } },
@@ -156,8 +184,8 @@ export const handler = async (event) => {
     }
 
     console.log(
-        `Sustainer application emailed: ${application.institution} [${application.projects.join(', ')}] ` +
-            `to ${NOTIFY.join(', ')} messageId=${messageId}`,
+        `Sustainer application emailed: ${applicantLabel} (${application.applicantType}) ` +
+            `[${application.projects.join(', ')}] to ${NOTIFY.join(', ')} messageId=${messageId}`,
     );
     return json(200, { ok: true });
 };

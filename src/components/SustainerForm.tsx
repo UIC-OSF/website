@@ -9,22 +9,42 @@ import { CircleCheckBig, Copy, Mail, Send, TriangleAlert } from 'lucide-react';
 const SUSTAINER_FORM_ENDPOINT = 'https://aclezaiz3jtumwwg4b2f4f6inm0rdvmk.lambda-url.us-east-2.on.aws/';
 const CONTACT_EMAIL = 'osf@uic.edu';
 
-const PROJECTS = [
-    { value: 'Equalify', hint: 'Digital accessibility platform' },
-    { value: 'AI Leaders', hint: 'Generative AI course material' },
-    { value: 'Plato', hint: 'Adaptive learning platform' },
+const APPLICANT_TYPES = [
+    {
+        value: 'institution',
+        label: 'An institution',
+        hint: 'A university or organization pledging on behalf of its staff.',
+    },
+    {
+        value: 'individual',
+        label: 'An individual',
+        hint: 'You are pledging your own hours or funds.',
+    },
+];
+
+// Project Committees, not products. Plato is a repository the AI Leaders
+// committee manages — it is not a committee of its own.
+const COMMITTEES = [
+    {
+        value: 'Equalify',
+        hint: 'Digital accessibility platform. Four repositories, including the Iris scanner and PDF remediation.',
+    },
+    {
+        value: 'AI Leaders',
+        hint: 'Generative AI course material, plus Plato, the adaptive learning platform. Two repositories.',
+    },
 ];
 
 const COMMITMENTS = [
     {
-        value: '100 staff hours toward feature development and monthly planning meetings',
-        label: '100 staff hours toward feature development and monthly planning meetings',
-        hint: 'About one workday per month.',
+        value: '100 staff hours per year toward OSF-related work',
+        label: '100 staff hours per year',
+        hint: 'About one workday a month — feature development, planning meetings, or promotional campaigns.',
     },
     {
         value: '$10,000 to the UIC Technology Solutions Open Source Fund',
-        label: '$10,000 to the UIC Technology Solutions Open Source Fund',
-        hint: 'We send an invoice and remittance details after you submit.',
+        label: '$10,000 to the fund',
+        hint: 'Funds OSF operations and development. We send an invoice and remittance details after you apply.',
     },
 ];
 
@@ -33,6 +53,7 @@ const FIELD_CLASS =
 const LABEL_CLASS = 'block text-sm font-semibold text-gray-700 mb-2';
 
 interface FormState {
+    applicantType: string;
     institution: string;
     projects: string[];
     commitment: string;
@@ -48,6 +69,7 @@ interface FormState {
 }
 
 const EMPTY_FORM: FormState = {
+    applicantType: 'institution',
     institution: '',
     projects: [],
     commitment: '',
@@ -64,16 +86,21 @@ const EMPTY_FORM: FormState = {
 
 const buildApplicationText = (form: FormState): string =>
     [
-        `Institution: ${form.institution}`,
-        `Projects to sustain: ${form.projects.join(', ')}`,
-        `Annual commitment: ${form.commitment}`,
+        `Applying as: ${form.applicantType === 'individual' ? 'An individual' : 'An institution'}`,
+        ...(form.institution ? [`Institution: ${form.institution}`] : []),
+        `Project Committees: ${form.projects.join(', ')}`,
+        `Annual pledge: ${form.commitment}`,
         '',
-        'Approving official',
-        `  Name: ${form.officialName}`,
-        `  Title: ${form.officialTitle}`,
-        `  Email: ${form.officialEmail}`,
-        '',
-        'Designee',
+        ...(form.applicantType === 'institution'
+            ? [
+                  'Approving official (secondary contact)',
+                  `  Name: ${form.officialName}`,
+                  `  Title: ${form.officialTitle}`,
+                  `  Email: ${form.officialEmail}`,
+                  '',
+              ]
+            : []),
+        'Sustainer designee (primary contact)',
         `  Name: ${form.designeeName}`,
         `  Title: ${form.designeeTitle || '—'}`,
         `  Email: ${form.designeeEmail}`,
@@ -82,7 +109,9 @@ const buildApplicationText = (form: FormState): string =>
         `Notes: ${form.notes || '—'}`,
         '',
         'Authorization',
-        '  Confirms the approving official is authorized to commit resources and that this submission serves as their signature: yes',
+        form.applicantType === 'individual'
+            ? '  Confirms they can commit the pledged resources and that this submission serves as their signature: yes'
+            : '  Confirms the approving official is authorized to commit resources and that this submission serves as their signature: yes',
     ].join('\n');
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
@@ -97,6 +126,15 @@ export const SustainerForm: React.FC = () => {
 
     const update = <K extends keyof FormState>(key: K, value: FormState[K]) =>
         setForm((prev) => ({ ...prev, [key]: value }));
+
+    // Individuals are their own approver, so clear the institution-only fields
+    // rather than submitting whatever was typed before the switch.
+    const setApplicantType = (applicantType: string) =>
+        setForm((prev) =>
+            applicantType === 'individual'
+                ? { ...prev, applicantType, institution: '', officialName: '', officialTitle: '', officialEmail: '' }
+                : { ...prev, applicantType },
+        );
 
     const toggleProject = (project: string) => {
         setProjectError(false);
@@ -156,9 +194,10 @@ export const SustainerForm: React.FC = () => {
             <div className="container mx-auto px-4">
                 <div className="max-w-3xl mx-auto">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">Become a Sustainer</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-uic-blue mb-4">Apply to Become a Sustainer</h2>
                         <p className="text-xl text-gray-600 leading-relaxed">
-                            Sign below. We'll invite your designee to the next roadmap meeting.
+                            Any individual or institution can apply. Designated UIC staff review each application, then
+                            invite your primary contact to join a Project Committee.
                         </p>
                     </div>
 
@@ -167,9 +206,9 @@ export const SustainerForm: React.FC = () => {
                             <CircleCheckBig className="w-12 h-12 text-uic-blue mx-auto mb-5" aria-hidden="true" />
                             <h3 className="text-2xl font-bold text-uic-blue mb-3">Application received</h3>
                             <p className="text-gray-700 leading-relaxed max-w-xl mx-auto mb-6">
-                                Thank you. We've sent your application to the fund leads and will follow up with{' '}
-                                <span className="font-semibold">{form.designeeName || 'your designee'}</span> within two
-                                business days.
+                                Thank you. Designated UIC staff review each application. Once yours is approved, we'll
+                                invite <span className="font-semibold">{form.designeeName || 'your primary contact'}</span>{' '}
+                                to join the Project Committee and attend the next roadmap meeting.
                             </p>
                             <a
                                 href={`mailto:${CONTACT_EMAIL}`}
@@ -187,42 +226,74 @@ export const SustainerForm: React.FC = () => {
                                 <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
                             </div>
 
-                            <div>
-                                <h3 className="text-xl font-bold text-uic-blue mb-2">Institution</h3>
+                            <fieldset>
+                                <legend className="text-xl font-bold text-uic-blue mb-2">
+                                    Applying As <span className="text-uic-red">*</span>
+                                </legend>
                                 <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-                                    One-year term from submission, renewable by mutual agreement.
+                                    One-year term from approval, renewable by mutual agreement.
                                 </p>
-                                <label htmlFor="institution" className={LABEL_CLASS}>
-                                    Institution name <span className="text-uic-red">*</span>
-                                </label>
-                                <input
-                                    type="text"
-                                    id="institution"
-                                    name="institution"
-                                    required
-                                    maxLength={200}
-                                    placeholder="University of ..."
-                                    value={form.institution}
-                                    onChange={(e) => update('institution', e.target.value)}
-                                    className={FIELD_CLASS}
-                                />
-                            </div>
+                                <div className="space-y-3">
+                                    {APPLICANT_TYPES.map((type) => (
+                                        <label
+                                            key={type.value}
+                                            className="flex items-start p-4 bg-white border border-gray-300 rounded-lg cursor-pointer hover:border-uic-blue transition-colors has-[:checked]:border-uic-blue has-[:checked]:ring-1 has-[:checked]:ring-uic-blue"
+                                        >
+                                            <input
+                                                type="radio"
+                                                name="applicant_type"
+                                                value={type.value}
+                                                required
+                                                checked={form.applicantType === type.value}
+                                                onChange={() => setApplicantType(type.value)}
+                                                className="mt-1 mr-4 w-4 h-4 accent-uic-blue flex-shrink-0"
+                                            />
+                                            <span>
+                                                <span className="block font-semibold text-gray-900">{type.label}</span>
+                                                <span className="block text-sm text-gray-600">{type.hint}</span>
+                                            </span>
+                                        </label>
+                                    ))}
+                                </div>
+
+                                {form.applicantType === 'institution' && (
+                                    <div className="mt-6">
+                                        <label htmlFor="institution" className={LABEL_CLASS}>
+                                            Institution name <span className="text-uic-red">*</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="institution"
+                                            name="institution"
+                                            required
+                                            maxLength={200}
+                                            placeholder="University of ..."
+                                            value={form.institution}
+                                            onChange={(e) => update('institution', e.target.value)}
+                                            className={FIELD_CLASS}
+                                        />
+                                    </div>
+                                )}
+                            </fieldset>
 
                             <fieldset ref={projectGroupRef}>
                                 <legend className="text-xl font-bold text-uic-blue mb-2">
-                                    Projects to Sustain <span className="text-uic-red">*</span>
+                                    Project Committees to Join <span className="text-uic-red">*</span>
                                 </legend>
-                                <p className="text-sm text-gray-600 mb-4">Select one or more. One commitment covers all of them.</p>
+                                <p className="text-sm text-gray-600 mb-4">
+                                    Select one or more. One pledge covers all of them. Each Committee may set added
+                                    membership criteria.
+                                </p>
 
                                 {projectError && (
                                     <p className="flex items-center text-sm font-semibold text-uic-red mb-4" role="alert">
                                         <TriangleAlert className="w-4 h-4 mr-2 flex-shrink-0" aria-hidden="true" />
-                                        Select at least one project to sustain.
+                                        Select at least one Project Committee to join.
                                     </p>
                                 )}
 
                                 <div className="space-y-3">
-                                    {PROJECTS.map((project) => (
+                                    {COMMITTEES.map((project) => (
                                         <label
                                             key={project.value}
                                             className="flex items-start p-4 bg-white border border-gray-300 rounded-lg cursor-pointer hover:border-uic-blue transition-colors has-[:checked]:border-uic-blue has-[:checked]:ring-1 has-[:checked]:ring-uic-blue"
@@ -246,9 +317,12 @@ export const SustainerForm: React.FC = () => {
 
                             <fieldset>
                                 <legend className="text-xl font-bold text-uic-blue mb-2">
-                                    Annual Commitment <span className="text-uic-red">*</span>
+                                    Annual Pledge <span className="text-uic-red">*</span>
                                 </legend>
-                                <p className="text-sm text-gray-600 mb-4">Select one.</p>
+                                <p className="text-sm text-gray-600 mb-4">
+                                    Select one. This is the minimum; you may be asked to self-report hours worked
+                                    against it.
+                                </p>
                                 <div className="space-y-3">
                                     {COMMITMENTS.map((commitment) => (
                                         <label
@@ -273,9 +347,12 @@ export const SustainerForm: React.FC = () => {
                                 </div>
                             </fieldset>
 
+                            {form.applicantType === 'institution' && (
                             <fieldset>
                                 <legend className="text-xl font-bold text-uic-blue mb-2">Approving Official</legend>
-                                <p className="text-sm text-gray-600 mb-4">Whoever can commit institutional resources.</p>
+                                <p className="text-sm text-gray-600 mb-4">
+                                    Whoever can commit institutional resources. Kept as the secondary point of contact.
+                                </p>
                                 <div className="grid md:grid-cols-2 gap-4">
                                     <div className="md:col-span-2">
                                         <label htmlFor="official_name" className={LABEL_CLASS}>
@@ -300,11 +377,13 @@ export const SustainerForm: React.FC = () => {
                                     </div>
                                 </div>
                             </fieldset>
+                            )}
 
                             <fieldset>
-                                <legend className="text-xl font-bold text-uic-blue mb-2">Designee</legend>
+                                <legend className="text-xl font-bold text-uic-blue mb-2">Sustainer Designee</legend>
                                 <p className="text-sm text-gray-600 mb-4">
-                                    Who attends the monthly roadmap meetings.
+                                    The primary point of contact. This person is noted as the Sustainer on the Project
+                                    Committee and can appoint others to fill the role.
                                 </p>
                                 <div className="grid md:grid-cols-2 gap-4">
                                     <div>
@@ -362,8 +441,10 @@ export const SustainerForm: React.FC = () => {
                                             className="mt-1 mr-3 w-4 h-4 accent-uic-blue flex-shrink-0"
                                         />
                                         <span>
-                                            The approving official above is authorized to commit these resources, and this
-                                            submission serves as their signature. <span className="text-uic-red">*</span>
+                                            {form.applicantType === 'individual'
+                                                ? 'I can commit the resources pledged above, and this submission serves as my signature.'
+                                                : 'The approving official above is authorized to commit these resources, and this submission serves as their signature.'}{' '}
+                                            <span className="text-uic-red">*</span>
                                         </span>
                                     </label>
                                 </div>

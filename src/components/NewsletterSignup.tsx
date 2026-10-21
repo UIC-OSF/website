@@ -22,7 +22,7 @@ export const NewsletterSignup: React.FC = () => {
                             <div className="bg-white/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
                                 <Mail className="w-8 h-8 text-white" />
                             </div>
-                            <h2 className="text-3xl font-bold mb-4">Not Ready to Sign?</h2>
+                            <h2 className="text-3xl font-bold mb-4">Not Ready to Apply?</h2>
                             <p className="text-blue-100 text-lg leading-relaxed">
                                 Roadmap updates and release notes. No pitch, just what shipped.
                             </p>
