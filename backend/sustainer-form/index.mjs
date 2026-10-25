@@ -62,7 +62,6 @@ function validate(input) {
         designeeName: str(input.designeeName, 100),
         designeeTitle: str(input.designeeTitle, 100),
         designeeEmail: str(input.designeeEmail, 200),
-        designeeDepartment: str(input.designeeDepartment, 100),
         notes: str(input.notes, 1000),
         attest: input.attest === true,
     };
@@ -110,7 +109,6 @@ const body = (a, meta) =>
         `  Name:       ${a.designeeName}`,
         `  Title:      ${a.designeeTitle || '—'}`,
         `  Email:      ${a.designeeEmail}`,
-        `  Department: ${a.designeeDepartment || '—'}`,
         '',
         'NOTES',
         `  ${a.notes || '—'}`,

@@ -17,6 +17,32 @@ interface ProjectCardProps {
     repos: Repo[];
 }
 
+interface Sustainer {
+    name: string;
+    title: string;
+    institution: string;
+}
+
+// The sustainer application tells every applicant that Sustainer Designees are
+// listed publicly here, so add each approved designee to this list.
+const SUSTAINERS: Sustainer[] = [
+    {
+        name: 'Blake Bertuccelli-Booth',
+        title: 'Assistant Director of Digital Accessibility Engineering',
+        institution: 'University of Illinois Chicago',
+    },
+    {
+        name: 'Stefin Pasternak',
+        title: 'Open Source Fund Manager',
+        institution: 'University of Illinois Chicago',
+    },
+    {
+        name: 'Zach Oshri',
+        title: 'LMS User Consultant and ATI Coordinator',
+        institution: 'California State University, East Bay',
+    },
+];
+
 const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, icon, href, ctaLabel, meets, repos }) => (
     <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
         <div className="mb-6 h-16 flex items-center justify-start">
@@ -115,6 +141,20 @@ export const Projects: React.FC = () => {
                         ]}
                     />
 
+                </div>
+
+                <div className="max-w-5xl mx-auto mt-8 bg-white border border-gray-100 rounded-xl p-6">
+                    <h3 className="text-sm font-bold uppercase tracking-wide text-gray-500 mb-3">
+                        Current Project Sustainers
+                    </h3>
+                    <ul className="space-y-1 text-gray-600 leading-relaxed">
+                        {SUSTAINERS.map((sustainer) => (
+                            <li key={sustainer.name}>
+                                <span className="font-semibold text-gray-900">{sustainer.name}</span>,{' '}
+                                {sustainer.title}, {sustainer.institution}
+                            </li>
+                        ))}
+                    </ul>
                 </div>
 
                 <p className="text-center text-gray-600 mt-10 max-w-3xl mx-auto leading-relaxed">

@@ -63,7 +63,6 @@ interface FormState {
     designeeName: string;
     designeeTitle: string;
     designeeEmail: string;
-    designeeDepartment: string;
     notes: string;
     attest: boolean;
 }
@@ -79,7 +78,6 @@ const EMPTY_FORM: FormState = {
     designeeName: '',
     designeeTitle: '',
     designeeEmail: '',
-    designeeDepartment: '',
     notes: '',
     attest: false,
 };
@@ -104,7 +102,6 @@ const buildApplicationText = (form: FormState): string =>
         `  Name: ${form.designeeName}`,
         ...(form.applicantType === 'institution' ? [`  Title: ${form.designeeTitle || '—'}`] : []),
         `  Email: ${form.designeeEmail}`,
-        ...(form.applicantType === 'institution' ? [`  Department: ${form.designeeDepartment || '—'}`] : []),
         '',
         `Notes: ${form.notes || '—'}`,
         '',
@@ -127,9 +124,9 @@ export const SustainerForm: React.FC = () => {
     const update = <K extends keyof FormState>(key: K, value: FormState[K]) =>
         setForm((prev) => ({ ...prev, [key]: value }));
 
-    // Individuals are their own approver and have no title or department, so
-    // clear the institution-only fields rather than submitting whatever was
-    // typed before the switch.
+    // Individuals are their own approver and have no title, so clear the
+    // institution-only fields rather than submitting whatever was typed before
+    // the switch.
     const setApplicantType = (applicantType: string) =>
         setForm((prev) =>
             applicantType === 'individual'
@@ -141,7 +138,6 @@ export const SustainerForm: React.FC = () => {
                       officialTitle: '',
                       officialEmail: '',
                       designeeTitle: '',
-                      designeeDepartment: '',
                   }
                 : { ...prev, applicantType },
         );
@@ -410,13 +406,6 @@ export const SustainerForm: React.FC = () => {
                                         <input type="text" id="designee_name" name="designee_name" required maxLength={100}
                                             value={form.designeeName} onChange={(e) => update('designeeName', e.target.value)} className={FIELD_CLASS} />
                                     </div>
-                                    {form.applicantType === 'institution' && (
-                                        <div>
-                                            <label htmlFor="designee_title" className={LABEL_CLASS}>Title</label>
-                                            <input type="text" id="designee_title" name="designee_title" maxLength={100}
-                                                value={form.designeeTitle} onChange={(e) => update('designeeTitle', e.target.value)} className={FIELD_CLASS} />
-                                        </div>
-                                    )}
                                     <div>
                                         <label htmlFor="designee_email" className={LABEL_CLASS}>
                                             Email <span className="text-uic-red">*</span>
@@ -426,9 +415,9 @@ export const SustainerForm: React.FC = () => {
                                     </div>
                                     {form.applicantType === 'institution' && (
                                         <div>
-                                            <label htmlFor="designee_department" className={LABEL_CLASS}>Department</label>
-                                            <input type="text" id="designee_department" name="designee_department" maxLength={100}
-                                                value={form.designeeDepartment} onChange={(e) => update('designeeDepartment', e.target.value)} className={FIELD_CLASS} />
+                                            <label htmlFor="designee_title" className={LABEL_CLASS}>Title</label>
+                                            <input type="text" id="designee_title" name="designee_title" maxLength={100}
+                                                value={form.designeeTitle} onChange={(e) => update('designeeTitle', e.target.value)} className={FIELD_CLASS} />
                                         </div>
                                     )}
                                 </div>
