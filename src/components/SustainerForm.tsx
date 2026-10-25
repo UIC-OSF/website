@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { CircleCheckBig, Copy, Mail, Send, TriangleAlert } from 'lucide-react';
+import { CircleCheckBig, Copy, Info, Mail, Send, TriangleAlert } from 'lucide-react';
 
 /*
  * Applications POST to the osf-sustainer-form Lambda (source in
@@ -102,9 +102,9 @@ const buildApplicationText = (form: FormState): string =>
             : []),
         'Sustainer designee (primary contact)',
         `  Name: ${form.designeeName}`,
-        `  Title: ${form.designeeTitle || '—'}`,
+        ...(form.applicantType === 'institution' ? [`  Title: ${form.designeeTitle || '—'}`] : []),
         `  Email: ${form.designeeEmail}`,
-        `  Department: ${form.designeeDepartment || '—'}`,
+        ...(form.applicantType === 'institution' ? [`  Department: ${form.designeeDepartment || '—'}`] : []),
         '',
         `Notes: ${form.notes || '—'}`,
         '',
@@ -127,12 +127,22 @@ export const SustainerForm: React.FC = () => {
     const update = <K extends keyof FormState>(key: K, value: FormState[K]) =>
         setForm((prev) => ({ ...prev, [key]: value }));
 
-    // Individuals are their own approver, so clear the institution-only fields
-    // rather than submitting whatever was typed before the switch.
+    // Individuals are their own approver and have no title or department, so
+    // clear the institution-only fields rather than submitting whatever was
+    // typed before the switch.
     const setApplicantType = (applicantType: string) =>
         setForm((prev) =>
             applicantType === 'individual'
-                ? { ...prev, applicantType, institution: '', officialName: '', officialTitle: '', officialEmail: '' }
+                ? {
+                      ...prev,
+                      applicantType,
+                      institution: '',
+                      officialName: '',
+                      officialTitle: '',
+                      officialEmail: '',
+                      designeeTitle: '',
+                      designeeDepartment: '',
+                  }
                 : { ...prev, applicantType },
         );
 
@@ -385,6 +395,13 @@ export const SustainerForm: React.FC = () => {
                                     The primary point of contact. This person is noted as the Sustainer on the Project
                                     Committee and can appoint others to fill the role.
                                 </p>
+                                <p className="flex items-start text-sm text-gray-800 bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                                    <Info className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0 text-uic-blue" aria-hidden="true" />
+                                    <span>
+                                        <span className="font-semibold">All Sustainer Designees are listed publicly</span> on
+                                        the OSF website.
+                                    </span>
+                                </p>
                                 <div className="grid md:grid-cols-2 gap-4">
                                     <div>
                                         <label htmlFor="designee_name" className={LABEL_CLASS}>
@@ -393,11 +410,13 @@ export const SustainerForm: React.FC = () => {
                                         <input type="text" id="designee_name" name="designee_name" required maxLength={100}
                                             value={form.designeeName} onChange={(e) => update('designeeName', e.target.value)} className={FIELD_CLASS} />
                                     </div>
-                                    <div>
-                                        <label htmlFor="designee_title" className={LABEL_CLASS}>Title</label>
-                                        <input type="text" id="designee_title" name="designee_title" maxLength={100}
-                                            value={form.designeeTitle} onChange={(e) => update('designeeTitle', e.target.value)} className={FIELD_CLASS} />
-                                    </div>
+                                    {form.applicantType === 'institution' && (
+                                        <div>
+                                            <label htmlFor="designee_title" className={LABEL_CLASS}>Title</label>
+                                            <input type="text" id="designee_title" name="designee_title" maxLength={100}
+                                                value={form.designeeTitle} onChange={(e) => update('designeeTitle', e.target.value)} className={FIELD_CLASS} />
+                                        </div>
+                                    )}
                                     <div>
                                         <label htmlFor="designee_email" className={LABEL_CLASS}>
                                             Email <span className="text-uic-red">*</span>
@@ -405,11 +424,13 @@ export const SustainerForm: React.FC = () => {
                                         <input type="email" id="designee_email" name="designee_email" required maxLength={200}
                                             value={form.designeeEmail} onChange={(e) => update('designeeEmail', e.target.value)} className={FIELD_CLASS} />
                                     </div>
-                                    <div>
-                                        <label htmlFor="designee_department" className={LABEL_CLASS}>Department</label>
-                                        <input type="text" id="designee_department" name="designee_department" maxLength={100}
-                                            value={form.designeeDepartment} onChange={(e) => update('designeeDepartment', e.target.value)} className={FIELD_CLASS} />
-                                    </div>
+                                    {form.applicantType === 'institution' && (
+                                        <div>
+                                            <label htmlFor="designee_department" className={LABEL_CLASS}>Department</label>
+                                            <input type="text" id="designee_department" name="designee_department" maxLength={100}
+                                                value={form.designeeDepartment} onChange={(e) => update('designeeDepartment', e.target.value)} className={FIELD_CLASS} />
+                                        </div>
+                                    )}
                                 </div>
                             </fieldset>
 
