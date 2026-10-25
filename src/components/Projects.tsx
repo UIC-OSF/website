@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Brain, Github } from 'lucide-react';
+import { ArrowRight, Brain, CalendarClock, Github } from 'lucide-react';
 import equalifyLogo from '../assets/equalify-square.png';
 
 interface Repo {
@@ -13,10 +13,11 @@ interface ProjectCardProps {
     icon: React.ReactNode;
     href: string;
     ctaLabel: string;
+    meets: string;
     repos: Repo[];
 }
 
-const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, icon, href, ctaLabel, repos }) => (
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, icon, href, ctaLabel, meets, repos }) => (
     <div className="bg-white rounded-xl shadow-lg p-8 border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
         <div className="mb-6 h-16 flex items-center justify-start">
             <div className="flex items-center space-x-3">
@@ -29,6 +30,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, icon, hre
 
         <p className="text-gray-600 mb-6 leading-relaxed">
             {description}
+        </p>
+
+        <p className="flex items-start mb-6 p-4 rounded-lg bg-uic-blue/5 text-gray-700">
+            <CalendarClock className="w-5 h-5 mr-3 mt-0.5 flex-shrink-0 text-uic-blue" aria-hidden="true" />
+            <span>
+                <span className="block text-sm font-bold uppercase tracking-wide text-gray-500">Committee meets</span>
+                <span className="font-semibold text-uic-blue">{meets}</span>
+            </span>
         </p>
 
         <div className="mb-8 flex-grow">
@@ -84,6 +93,7 @@ export const Projects: React.FC = () => {
                         icon={<img src={equalifyLogo} alt="" className="w-8 h-8 object-contain rounded" />}
                         href="https://equalify.uic.edu/"
                         ctaLabel="Visit Equalify"
+                        meets="Every other Tuesday, 1:00 PM Central"
                         repos={[
                             { name: 'equalify-iris', href: 'https://github.com/EqualifyEverything/equalify-iris' },
                             { name: 'equalify-iris-wp', href: 'https://github.com/EqualifyEverything/equalify-iris-wp' },
@@ -98,6 +108,7 @@ export const Projects: React.FC = () => {
                         icon={<Brain className="w-8 h-8" />}
                         href="https://ai-leaders.org/"
                         ctaLabel="Visit AI Leaders"
+                        meets="Every other Monday, 11:00 AM Central"
                         repos={[
                             { name: 'plato', href: 'https://github.com/1111philo/plato' },
                             { name: 'ai-leaders', href: 'https://github.com/1111philo/ai-leaders' },
